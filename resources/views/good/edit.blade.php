@@ -363,13 +363,25 @@
                     <form class="form row g-3" action="/good/update/{{$good->id}}" method="post" enctype="multipart/form-data"> {{--需和route對應--}}
                         @csrf
                             {{-- 圖片 --}}
-                            <div class="h6">目前產品圖片</div>
+                            <div class="h6">目前的主要圖片</div>
                             <img src="{{$good->img_path}}" alt="" style="width: 100%;">
 
-                            <label class="h6 mb-3" for="img_path">選擇新的產品圖片
-                                <input class="col-md-12" type="file" name="img_path" id="img_path">
+                            <label class="h6 mb-3" for="img_path">選擇新的主要圖片
+                                <input class="col-md-12" type="file" name="img_path" id="img_path" accept="image/*">
                             </label>
-                            {{-- 介紹 --}}
+
+
+                            <div class="h6">目前的次要圖片</div>
+                            @foreach ($good->imgs as $item)
+                                <img class="col-md-4" src="{{$item->img_path}}" alt="">
+                            @endforeach
+
+
+
+                            <label class="h6 mb-3" for="second-img">選擇新的次要圖片
+                                <input class="col-md-12" type="file" name="second-img[]" id="second-img" multiple accept="image/*">
+                            </label>
+                            {{-- 名稱 --}}
                             <label class="h6 mb-3" for="product_name">產品名稱
                                 <input class="col-md-12" type="text" name="product_name" id="product_name" value="{{$good->product_name}}">
                             </label>

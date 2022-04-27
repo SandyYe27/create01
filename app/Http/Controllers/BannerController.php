@@ -99,7 +99,7 @@ class BannerController extends Controller
         $banner = Banner::find($id);//使用id找到要刪除的資料，連同相關檔案一起刪除
         // $target = str_replace("/storage","public",$banner->img_path);//路徑中的public恢復成storage
         // Storage::disk('local')->delete($target);//刪除舊圖片
-        
+
         FilesController::deleteUpload($banner->img_path);
         $banner->delete();
 

@@ -307,7 +307,7 @@
                                 <div class="d-flex align-self-center">
                                     <button class="btn btn-secondary" onclick="location.href='/good/edit/{{$goods->id}}'">編輯</button>
                                     <button class="btn btn-danger ms-3" onclick="document.querySelector('#deleteForm{{$goods->id}}').submit();">刪除</button>
-                                    <form action="/banner/delete/{{$goods->id}}" method="post" hidden id="deleteForm{{$goods->id}}">
+                                    <form action="/good/delete/{{$goods->id}}" method="post" hidden id="deleteForm{{$goods->id}}">
                                         @csrf
                                         @method('DELETE')
                                     </form>

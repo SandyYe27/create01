@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Good;
+use App\Models\Product_img;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\FilesController;
+
 
 class GoodController extends Controller
 {
@@ -15,8 +18,6 @@ class GoodController extends Controller
         return view('good.index', compact('good'));
     }
 
-
-
     public function create()
     {
         //準備新增用的表單給使用者填寫->導去一個頁面
@@ -24,21 +25,29 @@ class GoodController extends Controller
 
     }
 
-
     public function store(Request $request)
     {
-        //將使用者填寫的資料，經過處理（ex:上傳檔案）後新增至資料庫
-        $path = Storage::disk('local')->put('public/good', $request->img_path);
-        $path = str_replace("public","storage",$path);
 
-        Good::create([
-            'img_path'=> '/'.$path,
+        $path = FilesController::imgUpload($request->img_path, 'product');
+
+        $product = Good::create([
+            'img_path'=> $path,
             'product_name'=> $request->product_name,
             'product_price'=> $request->product_price,
             'product_amount'=> $request->product_amount,
             'product_description'=> $request->product_description,
 
         ]);
+
+        foreach($request->second_img as $index => $element){
+
+            $path = FilesController::imgUpload($element, 'product');
+
+            Product_img::create([
+                'img_path'=> $path,
+                'product_id'=> $product->id,
+            ]);
+        };
 
         return redirect('/good');
     }
@@ -58,15 +67,19 @@ class GoodController extends Controller
 
         if($request->hasfile('img_path')){
             //使用者上傳的資料，先經過處理（ex:檔案上傳）後
-            $path = Storage::disk('local')->put('public/good', $request->img_path);
-            $path = str_replace("public","storage",$path);//將路徑中的public換成storage
+            // $path = Storage::disk('local')->put('public/good', $request->img_path);
+            // $path = str_replace("public","storage",$path);//將路徑中的public換成storage
+
+            $path = FilesController::imgUpload($request->img_path, 'good');
 
             //將舊有檔案刪除
-            $target = str_replace("/storage","public",$good->img_path);//將路徑中的storage恢復成public
-            Storage::disk('local')->delete($target);//刪除圖片
+            // $target = str_replace("/storage","public",$good->img_path);//將路徑中的storage恢復成public
+            // Storage::disk('local')->delete($target);//刪除圖片
+
+            FilesController::deleteUpload($good->img_path);
 
             //將新的資料更新到資料庫裡面
-            $good->img_path = '/'.$path;
+            $good->img_path = $path;
         }
 
         $good->product_name = $request->product_name;
@@ -83,8 +96,10 @@ class GoodController extends Controller
     {
 
         $good = Good::find($id);//使用id找到要刪除的資料，連同相關檔案一起刪除
-        $target = str_replace("/storage","public",$good->img_path);//路徑中的public恢復成storage
-        Storage::disk('local')->delete($target);//刪除舊圖片
+        // $target = str_replace("/storage","public",$good->img_path);//路徑中的public恢復成storage
+        // Storage::disk('local')->delete($target);//刪除舊圖片
+
+        FilesController::deleteUpload($good->img_path);
         $good->delete();
 
         return redirect('/good');//刪掉東西後，重新導入列表頁

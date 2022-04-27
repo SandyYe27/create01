@@ -262,10 +262,15 @@
                         @csrf
                         {{-- 圖片 --}}
                         <div class="col-md-12 d-flex aling-items-center">
-                            <label class="h6 " for="product-img">上傳產品圖片
-                                <input type="file" name="img_path" id="product-img">
+                            <label class="h6 " for="product-img">上傳產品主要圖片
+                                <input type="file" name="img_path" id="product-img" accept="image/*">
                             </label>
                         </div>
+
+                        <label class="h6 mb-3" for="second_img">產品次要圖片
+                            <input type="file" name="second_img[]" id="second_img" multiple accept="image/*">
+                        </label>
+
                         {{-- 品名 --}}
                         <label class="h6 mb-3" for="product_name">產品名稱
                             <input class="col-md-12" type="text" name="product_name" id="product_name">
