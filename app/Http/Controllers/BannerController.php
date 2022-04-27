@@ -15,7 +15,6 @@ class BannerController extends Controller
     public function index()//將所有資料從資料庫提出來，並輸出到列表上
     {
 
-        // $banner = Banner::orderBy('weith', 'desc')->get();
         $banner = Banner::get();
         // dd($banner);
         return view('banner.index', compact('banner'));

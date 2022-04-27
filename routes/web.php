@@ -75,4 +75,6 @@ Route::prefix('/good')->group(function(){
     Route::post('/update/{id}', [GoodController::class, 'update']);//更新功能
 
     Route::delete('/delete/{id}', [GoodController::class, 'destroy']);//刪除
+    Route::delete('/delete_img/{img_id}', [GoodController::class, 'delete_img']);//刪除
+
 });

@@ -360,7 +360,7 @@
                 </div>
                 <div class="col-md-12 ps-5 pe-5">
                     {{-- enctype="multipart/form-data" --}}
-                    <form class="form row g-3" action="/good/update/{{$good->id}}" method="post" enctype="multipart/form-data"> {{--需和route對應--}}
+                    <form class="form row g-3" action="/good/update/{{$good->id}}" method="post" enctype="multipart/form-data">
                         @csrf
                             {{-- 圖片 --}}
                             <div class="h6">目前的主要圖片</div>
@@ -370,16 +370,18 @@
                                 <input class="col-md-12" type="file" name="img_path" id="img_path" accept="image/*">
                             </label>
 
-
-                            <div class="h6">目前的次要圖片</div>
-                            @foreach ($good->imgs as $item)
-                                <img class="col-md-4" src="{{$item->img_path}}" alt="">
-                            @endforeach
-
-
+                            <label for="">目前的次要圖片</label>
+                            <div class="h6 d-flex flex-wrap">
+                                @foreach ($good->imgs as $item)
+                                    <div class="col-md-3 d-flex flex-column me-1"  id="sup_img{{$item->id}}">
+                                        <img class="mb-3" src="{{$item->img_path}}" alt="">
+                                        <button class="btn btn-danger align-self-center" type="button" onclick="delete_img({{$item->id}})">刪除圖片</button>
+                                    </div>
+                                @endforeach
+                            </div>
 
                             <label class="h6 mb-3" for="second-img">選擇新的次要圖片
-                                <input class="col-md-12" type="file" name="second-img[]" id="second-img" multiple accept="image/*">
+                                <input class="col-md-12" type="file" name="second-img[]" id="second_img" multiple accept="image/*">
                             </label>
                             {{-- 名稱 --}}
                             <label class="h6 mb-3" for="product_name">產品名稱
@@ -401,14 +403,42 @@
                                 <input class="col-md-12" type="number" name="product_amount" id="product_amount" value="{{$good->product_amount}}">
                             </label>
 
-                        {{-- 送出按鈕 --}}
-                        <div class="col-md-12 d-flex justify-content-between mt-3">
-                            <input type ="button" onclick="location.href='/good' " value="返回產品管理" style="width: 130px;height: 50px;">
-                            <input type="reset"style="width: 130px;height: 50px;">
-                            <input type="submit"style="width: 130px;height: 50px;" value="確定修改">
-                        </div>
+                            {{-- 按鈕 --}}
+                            <div class="col-md-12 d-flex justify-content-between mt-3">
+                                <input type="button" onclick="location.href='/good' " value="返回產品管理" style="width: 130px;height: 50px;">
+                                <input type="reset"style="width: 130px;height: 50px;">
+                                <input type="submit"style="width: 130px;height: 50px;" value="送出">
+                            </div>
                     </form>
+
+                    {{-- @foreach ($good->imgs as $item)
+                        <form action="/good/delete_img/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
+                            @method('DELETE')
+                            @csrf
+                        </form>
+                    @endforeach --}}
+
                 </div>
             </div>
         </section>
+    @endsection
+
+    @section('js')
+        <script>
+            function delete_img(id){
+                //準備表單以及內部的資料
+                let formData = new FormData();
+                formData.append('_method','DELETE');
+                formData.append('_token',' {{ csrf_token() }} ');
+                //將準備好的表單藉由fecth送到後台
+                fetch("/good/delete_img/"+id,{
+                    method:"POST",
+                    body: formData,
+                }).then(function(response){
+                    //成功從資料庫刪除資料後，將自己的HTML元素消除
+                   let element = document.querySelector('#sup_img'+id);
+                   element.parentNode.removeChild(element);//從父層刪裡面的元素
+                });
+            }
+        </script>
     @endsection

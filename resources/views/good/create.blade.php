@@ -262,8 +262,8 @@
                         @csrf
                         {{-- 圖片 --}}
                         <div class="col-md-12 d-flex aling-items-center">
-                            <label class="h6 " for="product-img">上傳產品主要圖片
-                                <input type="file" name="img_path" id="product-img" accept="image/*">
+                            <label class="h6 " for="img_path">上傳產品主要圖片
+                                <input type="file" name="img_path" id="img_path" accept="image/*">
                             </label>
                         </div>
 

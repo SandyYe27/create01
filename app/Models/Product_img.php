@@ -18,6 +18,8 @@ class Product_img extends Model
      *
      * @var string
      */
+    protected $table = 'product_imgs';
+
     protected $keyType = 'integer';
 
     /**
