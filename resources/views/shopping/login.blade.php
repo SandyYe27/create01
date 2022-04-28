@@ -127,12 +127,17 @@
                 <div class="google ms-3 me-3">G+</div>
                 <div class="linkin">in</div>
             </div>
-            <form action="" class="d-flex flex-column justify-content-center align-items-center">
+            <form method="POST" action="/login" class="d-flex flex-column justify-content-center align-items-center">
+                @csrf
                 <span class="w-50">or use email your account</span>
-                <input style="background-color: rgb(255, 255, 255); color:black;" type="text"  placeholder="Email">
-                <input style="background-color: rgb(255, 255, 255); color:black;" type="password" placeholder="Password">
+                <input style="background-color: rgb(255, 255, 255); color:black;" type="text"  placeholder="Email" name="email">
+                <input style="background-color: rgb(255, 255, 255); color:black;" type="password" placeholder="Password" name="password">
+                <label class="d-flex" for="remember_me" style="width:300px; height:50px;">
+                    <input id="remember_me" type="checkbox" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
                 <span class="w-50 ms-auto">Forgot your password?</span>
-                <button >SIGN IN</button>
+                <button type="submit">SIGN IN</button>
             </form>
         </div>
     </section>

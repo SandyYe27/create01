@@ -31,8 +31,7 @@
                 <a href="/good"><button class="btn h6">Product</button></a>
                 <a href="/banner"><button class="btn h6">Banner</button></a>
                 <a href="/comment"><button class="btn h6">Comment</button></a>
-                <button style="border: 0; background-color:white;" ><a href="/shopping1"><i class="h3 bi bi-cart-fill"></i></a></button>
-                <!-- <i class="h3 bi bi-person-circle"></i> -->
+                <button style="border: 0; background-color:white;"><a href="/shopping1"><i class="h3 bi bi-cart-fill"></i></a></button>
                 <div class="dropdown">
                     <button class="btndropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="border: 0; background-color:white;">
                         <i class="h3 bi bi-person-circle"></i>

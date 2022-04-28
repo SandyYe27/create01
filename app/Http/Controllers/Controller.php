@@ -34,7 +34,7 @@ class Controller extends BaseController
     //     return view('切微軟');
     // }
     public function login(){
-        return view('.shopping.login');
+        return view('shopping.login');
     }
 
 

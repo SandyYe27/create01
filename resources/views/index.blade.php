@@ -93,6 +93,7 @@
                 z-index: 1;
                 margin-left: -10px;
             }
+
             #ham{
                 width: 30px;
                 height: 30px;
@@ -208,7 +209,7 @@
 
 
     @section('main')
-
+    
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RWLAmj?ver=35aa&q=0&m=8&h=472&w=1259&b=%23FFFFFFFF&l=f&x=0&y=0&s=1898&d=712&aim=true" alt=""></div>
@@ -248,39 +249,6 @@
                         </div>
                     @endforeach
 
-                    {{-- 1
-                    <div class="card mb-3 d-flex flex-column align-items-center " style=" border: none;">
-                        <div class="d-flex align-items-center justify-content-center h3" style="width: 80px; height: 80px; border-radius: 50px; background-color: rgb(222, 228, 255); ">
-                            <i class="fa-solid fa-scissors" style="color: rgb(92, 106, 255);"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{ $data2[0]->title}}</h5>
-                            <p class="card-text text-center">{{ $data2[0]->content}}</p>
-                        </div>
-                        <a href="#" class="btn" style="color: rgb(92, 106, 255);">Learn More →</a>
-                    </div>
-                    2
-                    <div class="card mb-3 d-flex flex-column align-items-center " style=" border: none;">
-                        <div class="d-flex align-items-center justify-content-center h3" style="width: 80px; height: 80px; border-radius: 50px; background-color: rgb(222, 228, 255); ">
-                            <i class="fa-solid fa-scissors" style="color: rgb(92, 106, 255);"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{$data2[1]->title}}</h5>
-                            <p class="card-text text-center">{{ $data2[1]->content}}</p>
-                        </div>
-                        <a href="#" class="btn" style="color: rgb(92, 106, 255);">Learn More →</a>
-                    </div>
-                    3
-                    <div class="card mb-3 d-flex flex-column align-items-center" style=" border: none;">
-                        <div class="d-flex align-items-center justify-content-center h3" style="width: 80px; height: 80px; border-radius: 50px; background-color: rgb(222, 228, 255); ">
-                            <i class="fa-solid fa-user" style="color: rgb(92, 106, 255);"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{ $data2[2]->title}}</h5>
-                            <p class="card-text text-center">{{ $data2[2]->content}}</p>
-                        </div>
-                        <a href="#" class="btn" style="color: rgb(92, 106, 255);">Learn More →</a>
-                    </div> --}}
                 </div>
                 <div class="row">
                     <div class="section-2-bottom d-flex justify-content-center align-items-center">
