@@ -79,13 +79,13 @@ class GoodController extends Controller
 
                 Product_img::create([
                     'img_path'=> $path,
-                    'product_id'=> $product->id,
+                    'product_id'=> $id,
                 ]);
 
             };
 
         };
-
+        // dd($good->imgs);
 
         $good->product_name = $request->product_name;
         $good->product_price = $request->product_price;

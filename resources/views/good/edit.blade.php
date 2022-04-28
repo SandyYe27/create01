@@ -365,7 +365,7 @@
                             {{-- 圖片 --}}
                             <div class="h6">目前的主要圖片</div>
                             <img src="{{$good->img_path}}" alt="" style="width: 100%;">
-
+                            {{-- 次要圖片 --}}
                             <label class="h6 mb-3" for="img_path">選擇新的主要圖片
                                 <input class="col-md-12" type="file" name="img_path" id="img_path" accept="image/*">
                             </label>
@@ -383,6 +383,7 @@
                             <label class="h6 mb-3" for="second-img">選擇新的次要圖片
                                 <input class="col-md-12" type="file" name="second-img[]" id="second_img" multiple accept="image/*">
                             </label>
+
                             {{-- 名稱 --}}
                             <label class="h6 mb-3" for="product_name">產品名稱
                                 <input class="col-md-12" type="text" name="product_name" id="product_name" value="{{$good->product_name}}">

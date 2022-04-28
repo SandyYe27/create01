@@ -10,7 +10,6 @@
     <style>
         #login{
             height: 100vh;
-            background-color: blueviolet;
             position: relative;
         }
         .text{
@@ -20,15 +19,15 @@
         }
         .text h1{
             text-align: left;
-            color: white;
+            color: rgb(0, 0, 0);
             font-size: 3rem;
             font-weight: 700;
         }
         .text p{
-            color: white;
+            color: rgb(0, 0, 0);
         }
         .icons{
-            color: white;
+            color: rgb(118, 118, 118);
             left: 25%;
             transform: translateX(-25%);
             bottom: 10px;
@@ -130,8 +129,8 @@
             </div>
             <form action="" class="d-flex flex-column justify-content-center align-items-center">
                 <span class="w-50">or use email your account</span>
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input style="background-color: rgb(255, 255, 255); color:black;" type="text"  placeholder="Email">
+                <input style="background-color: rgb(255, 255, 255); color:black;" type="password" placeholder="Password">
                 <span class="w-50 ms-auto">Forgot your password?</span>
                 <button >SIGN IN</button>
             </form>
