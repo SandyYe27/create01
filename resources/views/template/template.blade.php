@@ -35,7 +35,7 @@
                 @auth
                 {{--如果有登入，看到user您好，和登出鍵--}}
                     <li class="list-unstyled">
-                        <a class="d-flex flex-wrap" style="width:100px;padding-top:13px;">{{ Auth::user()->name }}, 您好</a> {{--用 Auth::user()->name 調出使用者資料，如名字、信箱 --}}
+                        <a href="/dashboard" class="d-flex flex-wrap" style="width:100px;padding-top:13px;">{{ Auth::user()->name }}, 您好</a> {{--用 Auth::user()->name 調出使用者資料，如名字、信箱 --}}
                     </li>
 
                     <li class="list-unstyled">
