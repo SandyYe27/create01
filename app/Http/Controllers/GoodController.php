@@ -44,6 +44,7 @@ class GoodController extends Controller
 
         ]);
 
+        //次要圖片 多圖片上傳
         if($request->hasfile('second_img')){
             foreach($request->second_img as $index => $element){
 
@@ -53,7 +54,7 @@ class GoodController extends Controller
                     'img_path'=> $path,
                     'product_id'=> $product->id,
                 ]);
-            };
+            }
 
         }
         return redirect('/good');
@@ -72,6 +73,7 @@ class GoodController extends Controller
     {
 
         $good = Good::find($id);
+        //更換主要圖片
         if($request->hasfile('img_path')){
 
             FilesController::deleteUpload($good->img_path);
@@ -79,19 +81,16 @@ class GoodController extends Controller
             $good->img_path = $path;
         };
 
+        //次要圖片處理
 
         if($request->hasfile('second_img')){
             foreach($request->second_img as $index => $element){
-
-                $path = FilesController::imgUpload($request->img_path, 'product');
-
+                $path = FilesController::imgUpload($element, 'product');
                 Product_img::create([
                     'img_path'=> $path,
                     'product_id'=> $id,
                 ]);
-
             };
-
         };
         // dd($good->imgs);
 

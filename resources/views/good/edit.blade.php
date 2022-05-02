@@ -384,7 +384,7 @@
                             </div>
 
                             <label class="h6 mb-3" for="second-img">選擇新的次要圖片
-                                <input class="col-md-12" type="file" name="second-img[]" id="second_img" multiple accept="image/*">
+                                <input class="col-md-12" type="file" name="second_img[]" id="second_img" multiple accept="image/*">
                             </label>
 
                             {{-- 名稱 --}}
