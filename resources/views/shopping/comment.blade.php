@@ -374,6 +374,7 @@
                                 <div>
                                     @auth
                                         <a href="/comment/edit/{{$comment->id}}">編輯</a>
+                                        &nbsp;
                                         <a href="/comment/delete/{{$comment->id}}" style="color: red;">刪除</a>
                                     @endauth
                                 </div>

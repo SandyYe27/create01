@@ -21,16 +21,16 @@ use App\Http\Controllers\GoodController;
 
 Route::get('/', [Controller::class, 'index']);
 
+//後台首頁
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth','power'])->name('dashboard');//使用auth和power這兩個middleware
+
 
 require __DIR__.'/auth.php';
 
-//登入
-Route::get('/login', [Controller::class, 'login']);
 
-//留言
+//留言相關
 Route::get('/comment', [Controller::class, 'comment']);
 Route::get('/comment/save', [Controller::class, 'save_comment']);
 Route::get('/comment/delete/{id}', [Controller::class, 'delete_comment']);
@@ -46,7 +46,7 @@ Route::get('/shopping4', [ShoppingCarController::class, 'step04']);
 
 
 //Banner相關
-Route::prefix('/banner')->middleware(['auth'])->group(function(){
+Route::prefix('/banner')->middleware(['auth','power'])->group(function(){
 
     Route::get('/', [BannerController::class, 'index']);//總表、列表頁
 
@@ -59,8 +59,8 @@ Route::prefix('/banner')->middleware(['auth'])->group(function(){
     Route::delete('/delete/{id}', [BannerController::class, 'destroy']);//刪除
 });
 
-//商品管理相關
-Route::prefix('/good')->middleware(['auth'])->group(function(){
+//商品相關
+Route::prefix('/good')->middleware(['auth','power'])->group(function(){
     Route::get('/', [GoodController::class, 'index']);//總表、列表頁
 
     Route::get('/create', [GoodController::class, 'create']);//新增頁

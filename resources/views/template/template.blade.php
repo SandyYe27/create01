@@ -27,45 +27,37 @@
         </div>
         <div class="navbar-right gap-4 d-md-flex">
             <div class="navbar-right-button gap-4 d-md-flex">
-                <a href="/good"><button class="btn h6">Product</button></a>
-                <a href="/banner"><button class="btn h6">Banner</button></a>
+                {{-- <a href="/good"><button class="btn h6">Product</button></a>
+                <a href="/banner"><button class="btn h6">Banner</button></a> --}}
                 <a href="/comment"><button class="btn h6">Comment</button></a>
                 <button style="border: 0; background-color:white;"><a href="/shopping1"><i class="h3 bi bi-cart-fill"></i></a></button>
+
                 @auth
-                <li class="list-unstyled">
-                    <a class="d-flex flex-wrap" style="width:100px;padding-top:13px;">{{ Auth::user()->name }}, 您好</a>
-                </li>
+                {{--如果有登入，看到user您好，和登出鍵--}}
+                    <li class="list-unstyled">
+                        <a class="d-flex flex-wrap" style="width:100px;padding-top:13px;">{{ Auth::user()->name }}, 您好</a> {{--用 Auth::user()->name 調出使用者資料，如名字、信箱 --}}
+                    </li>
 
-                <li class="list-unstyled">
-                    <a href="" onclick="event.preventDefault(); document.querySelector('#logout_form').submit()" style="color: red; padding-top:13px;">登出</a>
-
-                    <form action="POST" action="{{ route('logout')}}" hidden id="logout_form">
-                        @csrf
-                    </form>
-                </li>
+                    <li class="list-unstyled">
+                        <a href="" onclick="event.preventDefault(); document.querySelector('#logout_form').submit()" style="padding-top:13px;">登出</a>
+                        {{--使用event.preventDefault() 來停止換頁動作、或送出表單 --}}
+                        <form method="POST" action="{{ route('logout')}}" hidden id="logout_form">
+                            @csrf
+                        </form>
+                    </li>
                 @endauth
 
-                @guest
-                {{-- <a class="styled-none d-flex pt-3" href="/login" style="background-color: gray; text-align:center;height:50px;">
-                    <i class="h3 bi bi-person-circle"></i>登入
-                </a> --}}
-                <button style="border: 0; background-color:white;">
-                    <a href="/login" class="d-flex">
-                        <i class="h3 bi bi-person-circle"></i>
-                        <span class="ms-1" style="margin-top: 12px">登入</span>
-                    </a>
-                </button>
 
-                {{-- <a href="/login" class="styled-none"><button><i class="h3 bi bi-person-circle"></i> 登入</button></a> --}}
-                @endguest
-                {{-- <div class="dropdown">
-                    <button class="btndropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="border: 0; background-color:white;">
-                        <i class="h3 bi bi-person-circle"></i>
+                {{--如果沒登入，看到登入鍵，導到登入頁login--}}
+                @guest
+                    <button style="border: 0; background-color:white;">
+                        <a href="/login" class="d-flex">
+                            <i class="h3 bi bi-person-circle"></i>
+                            <span class="ms-1" style="margin-top: 12px">登入</span>
+                        </a>
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <a class="dropdown-item" href="/login"><li>Login</li></a>
-                    </ul>
-                </div> --}}
+                @endguest
+
             </div>
         </div>
         <input type="checkbox" id="ham" hidden>
