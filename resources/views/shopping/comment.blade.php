@@ -368,20 +368,14 @@
                                 <div class="d-flex justify-content-between ">
                                     <div class="h5">{{$comment->title}}</div>
                                     <div>{{substr($comment->created_at,0,16)}}</div>
-                                    {{-- <div class="">
-                                        {{ substr($comment->created_at,0,4).'年'}}
-                                        {{ substr($comment->created_at,5,2).'月'}}
-                                        {{ substr($comment->created_at,8,2).'日'}}
-                                        {{ substr($comment->created_at,11,2).'時'}}
-                                        {{ substr($comment->created_at,14,2).'分'}}
-
-                                    </div> --}}
                                 </div>
                                 <div>{{$comment->name}}</div>
                                 <div>{{$comment->context}}</div>
                                 <div>
-                                    <a href="/comment/edit/{{$comment->id}}">編輯</a>
-                                    <a href="/comment/delete/{{$comment->id}}" style="color: red">刪除</a>
+                                    @auth
+                                        <a href="/comment/edit/{{$comment->id}}">編輯</a>
+                                        <a href="/comment/delete/{{$comment->id}}" style="color: red;">刪除</a>
+                                    @endauth
                                 </div>
                             </div>
                         @endforeach

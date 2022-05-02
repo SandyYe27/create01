@@ -16,8 +16,10 @@ class BannerController extends Controller
     {
 
         $banner = Banner::get();
+        $header = 'Banner管理-列表頁';
+        $slot = '';
         // dd($banner);
-        return view('banner.index', compact('banner'));
+        return view('banner.index', compact('banner','header','slot'));
     }
 
 
@@ -25,7 +27,9 @@ class BannerController extends Controller
     public function create()
     {
         //準備新增用的表單給使用者填寫->導去一個頁面
-        return view('banner.create');
+        $header = 'Banner管理-新增頁';
+        $slot = '';
+        return view('banner.create',compact('header','slot'));
 
     }
 
@@ -52,7 +56,9 @@ class BannerController extends Controller
     {
         //根據id找到想編輯的資料，將資料連同編輯用的畫面回傳給使用者
         $banner = Banner::find($id);//model抓資料
-        return view('banner.edit',compact('banner'));
+        $header = 'Banner管理-編輯頁';
+        $slot = '';
+        return view('banner.edit',compact('banner','header','slot'));
     }
 
 

@@ -15,14 +15,19 @@ class GoodController extends Controller
     public function index()//將所有資料從資料庫提出來，並輸出到列表上
     {
         $good = Good::get();
-        return view('good.index', compact('good'));
+        $header = '商品管理-列表頁';
+        $slot = '';
+        return view('good.index', compact('good','header','slot'));
     }
 
 
     public function create()
     {
         //準備新增用的表單給使用者填寫->導去一個頁面
-        return view('good.create');
+        $header = '商品管理-新增頁';
+        $slot = '';
+        return view('good.create', compact('header','slot'));
+
     }
 
     public function store(Request $request)
@@ -57,7 +62,10 @@ class GoodController extends Controller
     public function edit($id)
     {
         $good = Good::find($id);//model抓資料
-        return view('good.edit',compact('good'));
+        $header = '商品管理-編輯頁';
+        $slot = '';
+
+        return view('good.edit',compact('good','header','slot'));
     }
 
     public function update(Request $request, $id)

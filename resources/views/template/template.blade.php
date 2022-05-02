@@ -27,27 +27,52 @@
         </div>
         <div class="navbar-right gap-4 d-md-flex">
             <div class="navbar-right-button gap-4 d-md-flex">
-                <button class="btn h6">About</button>
                 <a href="/good"><button class="btn h6">Product</button></a>
                 <a href="/banner"><button class="btn h6">Banner</button></a>
                 <a href="/comment"><button class="btn h6">Comment</button></a>
                 <button style="border: 0; background-color:white;"><a href="/shopping1"><i class="h3 bi bi-cart-fill"></i></a></button>
-                <div class="dropdown">
+                @auth
+                <li class="list-unstyled">
+                    <a class="d-flex flex-wrap" style="width:100px;padding-top:13px;">{{ Auth::user()->name }}, 您好</a>
+                </li>
+
+                <li class="list-unstyled">
+                    <a href="" onclick="event.preventDefault(); document.querySelector('#logout_form').submit()" style="color: red; padding-top:13px;">登出</a>
+
+                    <form action="POST" action="{{ route('logout')}}" hidden id="logout_form">
+                        @csrf
+                    </form>
+                </li>
+                @endauth
+
+                @guest
+                {{-- <a class="styled-none d-flex pt-3" href="/login" style="background-color: gray; text-align:center;height:50px;">
+                    <i class="h3 bi bi-person-circle"></i>登入
+                </a> --}}
+                <button style="border: 0; background-color:white;">
+                    <a href="/login" class="d-flex">
+                        <i class="h3 bi bi-person-circle"></i>
+                        <span class="ms-1" style="margin-top: 12px">登入</span>
+                    </a>
+                </button>
+
+                {{-- <a href="/login" class="styled-none"><button><i class="h3 bi bi-person-circle"></i> 登入</button></a> --}}
+                @endguest
+                {{-- <div class="dropdown">
                     <button class="btndropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="border: 0; background-color:white;">
                         <i class="h3 bi bi-person-circle"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                       <a class="dropdown-item" href="/login"><li>Login</li></a>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </div>
         <input type="checkbox" id="ham" hidden>
         <label for="ham"><div></div></label>
         <div class="ham-div list-unstyled" style="width: 100%;" >
-            <button class="btn h6" style="width: 100% ;">Blog</button>
-            <button class="btn h6" style="width: 100% ;">Product</button>
-            <button class="btn h6" style="width: 100% ;">About</button>
+            <a href="/good"><button class="btn h6" style="width: 100% ;">Product</button></a>
+            <a href="/banner"><button class="btn h6" style="width: 100% ;">Banner</button></a>
             <a href="/comment"><button class="btn h6" style="width: 100% ;">Comment</button></a>
 
             <button class="d-flex justify-content-center" style="width: 100%; border: 0px; background-color: rgb(255, 255, 255);">

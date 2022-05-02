@@ -12,8 +12,8 @@
             height: 100vh;
             position: relative;
         }
+
         .text{
-            /* background-color: rgb(0, 0, 0); */
             background-color: rgba(0, 0, 0, 0.1);
             padding: 0px 96px;
         }
@@ -27,9 +27,9 @@
             color: rgb(0, 0, 0);
         }
         .icons{
-            color: rgb(118, 118, 118);
-            left: 25%;
-            transform: translateX(-25%);
+            color: rgb(255, 255, 255);
+            left: 22%;
+            transform: translateX(-22%);
             bottom: 10px;
             position: absolute;
         }
@@ -38,10 +38,11 @@
             .text{
                 display: none!important;
             }
-        }
-        @media (max-width:1000px) {
-            .text{
-                display: none!important;
+            .icons{
+            color: rgb(255, 255, 255);
+            left: 50%;
+            transform: translateX(-50%);
+
             }
         }
 
@@ -55,7 +56,7 @@
             }
         }
         .form *{
-            color: white;
+            color: rgb(255, 255, 255);
             margin-bottom: 20px;
             width: 100%;
 
@@ -103,12 +104,15 @@
         button:hover{
             cursor: pointer;
         }
+        .left-box{
+            background-color: rgb(170, 170, 170)
+        }
 
     </style>
 </head>
 <body>
     <section id="login" class="w-100 d-flex">
-        <div class="text w-50 h-100 d-flex flex-column align-items-center justify-content-center">
+        <div class="left-box text w-50 h-100 d-flex flex-column align-items-center justify-content-center">
             <h1 class="w-100">Keep it special</h1>
             <p class="w-100 fs-2">Capture your personal memory in unique way, anywhere.</p>
         </div>
@@ -136,9 +140,10 @@
                     <input id="remember_me" type="checkbox" name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
-                <span class="w-50 ms-auto">Forgot your password?</span>
+                <span id="emailHelp" class="w-50 ms-auto">Forgot your password?</span>
                 <button type="submit">SIGN IN</button>
             </form>
+
         </div>
     </section>
 
