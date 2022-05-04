@@ -57,9 +57,8 @@
         }
         .form *{
             color: rgb(255, 255, 255);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             width: 100%;
-
         }
         .form .login-with div{
             border: 1px solid white;
@@ -70,6 +69,8 @@
             justify-content: center;
             align-items: center;
             font-weight: 700;
+            margin-top: -10px;
+            margin-bottom: -5px;
         }
         .login-with div:hover{
             background-color: aliceblue;
@@ -88,6 +89,17 @@
             border-radius: 5px;
             font-size: 18px;
             padding-left: 10px;
+        }
+        .formm a{
+        /* 點此註冊新帳號 */
+            text-decoration: none;
+            margin: 0 auto;
+            margin-top: -30px;
+            margin-bottom:20px;
+        }
+        .formm a:hover{
+            color: white;
+            text-decoration-line: underline
         }
         .w-50.ms-auto:hover{
             text-decoration: underline;
@@ -131,17 +143,21 @@
                 <div class="google ms-3 me-3">G+</div>
                 <div class="linkin">in</div>
             </div>
-            <form method="POST" action="{{ route('login')}}" class="d-flex flex-column justify-content-center align-items-center">
+            <form method="POST" action="{{ route('login')}}" class="formm d-flex flex-column justify-content-center align-items-center">
                 @csrf
                 <span class="w-50">or use email your account</span>
                 <input style="background-color: rgb(255, 255, 255); color:black;" type="text"  placeholder="Email" name="email">
                 <input style="background-color: rgb(255, 255, 255); color:black;" type="password" placeholder="Password" name="password">
 
-                <label class="d-flex w-50" for="remember_me" >
-                    <input id="remember_me" type="checkbox" name="remember" style="width: 20px;height:20px; margin-right:5px; margin-top:2px;">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-                <span id="emailHelp" class="w-50 ms-auto"  style="margin-top:-30px">Forgot your password?</span>
+                <div class="d-flex w-50">
+                    <label class="d-flex w-50" for="remember_me" >
+                        <input id="remember_me" type="checkbox" name="remember" style="width: 20px;height:20px; margin-right:5px; margin-top:2px;">
+                        <span class="w-80 ml-2 text-sm text-gray-600 me-auto">{{ __('Remember me') }}</span>
+                    </label>
+                    <span id="emailHelp" class="w-50 ms-auto" >Forgot your password?</span>
+                </div>
+                <a href="/register" class="w-50">新用戶點此註冊帳號 Click to Register</a>
+
                 <button type="submit">SIGN IN</button>
             </form>
 

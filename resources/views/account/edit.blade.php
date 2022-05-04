@@ -1,6 +1,6 @@
-@extends('template.template')
+@extends('layouts.app')
     @section('pageTitle')
-        編輯產品
+        編輯帳號
     @endsection
 
     @section('css')
@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
         <style>
             a{
                 text-decoration: none;
+
             }
             nav{
-                padding: 10px 120px;
-                background-color: rgb(255, 255, 255);
+                /* background-color: aquamarine; */
+                /* padding: 10px 120px; */
                 /* width: 100%; */
                 /* position: relative; */
             }
@@ -110,7 +110,7 @@
                 padding-top: 50px;
                 padding-bottom: 50px;
             }
-            #good{
+            #account{
                 width: 1030px;
                 /* height: 1000px; */
                 margin: 0 auto;
@@ -120,12 +120,12 @@
 
             }
             @media (max-width:1039px) {
-                #good{
+                #account{
                     width: 100%;
                 }
             }
             @media (max-width:785px) {
-                #good{
+                #account{
                     width: 460px;
                 }
                 .steps{
@@ -133,17 +133,125 @@
                 }
             }
             @media (max-width:460px) {
-                #good{
+                #account{
                     width: 100%;
                 }
             }
-            #good .container_xxl{
+            #account .container_xxl{
                 /* background-color: rgb(213, 232, 255); */
                 /* height: 850px; */
                 position: relative;
 
             }
+            .buy-progress{
+                /* background-color: rgb(120, 189, 249); */
+                padding-top: 20px;
 
+            }
+            #account .steps{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 70px;
+            }
+
+            #account .steps .step{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: rgb(255, 255, 255);
+                line-height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+
+            #account .steps .step::before{
+                /* content: '確認購物車'; */
+                content: attr(data-text);
+                position: absolute;
+                bottom: -40px;
+                text-align: center;
+                word-break: keep-all;
+                color: black;
+
+            }
+
+            #account .steps .buy-progress-bar{
+                /* width: 180px; */
+                width: 17%;
+                height: 8px;
+                border-radius: 5px;
+                background-color: rgb(221, 221, 221);
+                margin: 0px 8px;
+            }
+
+            @media (max-width:785px) {
+                #account .steps .buy-progress-bar{
+                    width: 10%;
+                }
+            }
+            #account .steps .green{
+                background-color: rgb(15, 190, 105);
+                color: white;
+            }
+            #account .steps .progress-25::before{
+                content: '';
+                width: 100%;
+                height: 100%;
+                background-color: rgb(54, 224, 153);
+                display: block;
+                border-radius: 5px;
+            }
+            #account .steps .progress-50::before{
+                content: '';
+                width: 100%;
+                height: 100%;
+                background-color: rgb(54, 224, 153);
+                display: block;
+                border-radius: 5px;
+            }
+            #account .steps .progress-75::before{
+                content: '';
+                width: 35%;
+                height: 100%;
+                background-color: rgb(54, 224, 153);
+                display: block;
+                border-radius: 5px;
+            }
+            hr{
+                color:rgb(165, 165, 165);
+                width: 90%;
+                margin: 0 auto;
+            }
+            main p{
+                font-size: 20px;
+            }
+
+            table{
+                /* width: 300px; */
+                position: absolute;
+                right: 30px;
+                margin-top: 20px;
+            }
+            td{
+                text-align: end;
+                width: 50px;
+            }
+            tr > td:first-of-type{
+                color: gray;
+                font-size: 13px;
+            }
+            tr > td:last-of-type{
+                font-weight: 600;
+                font-size: 20px;
+            }
+            .next-step{
+                width: 90%;
+                margin: 0 auto;
+                margin-bottom: 30px;
+            }
             .footer-top{
                 background-color: rgb(255, 255, 255);
                 padding-top: 50px;
@@ -242,110 +350,55 @@
                 justify-content: center;
                 }
             }
-            body {
-                background: #eee;
-                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-
-            }
-            .swiper {
-                width: 100%;
-                height: 100%;
-            }
-            .swiper-slide {
-                text-align: center;
-                font-size: 18px;
-                background: #fff;
-
-                /* Center slide text vertically */
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: -webkit-flex;
-                display: flex;
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                -webkit-justify-content: center;
-                justify-content: center;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                -webkit-align-items: center;
-                align-items: center;
-            }
-            .swiper-slide img {
-                display: block;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
         </style>
     @endsection
 
 
     @section('main')
 
-        <section id="good" class="p-3" >
+        <section id="account" class="p-3" >
             <div class="container_xxl p-3">
                 <div class="col-md-12 d-flex justify-content-between mb-3">
-                    <h2 class="">商品內頁</h2>
+                    <h2 class="">編輯帳號
+                    </h2>
                 </div>
                 <div class="col-md-12 ps-5 pe-5">
                     {{-- enctype="multipart/form-data" --}}
-                    <form class="form row g-3" action="" method="post" enctype="multipart/form-data">
+                    <form class="form row g-3" action="/account/update/{{$user->id}}" method="post" enctype="multipart/form-data">
                         @csrf
-                            <div class="product-images d-flex flex-column col-md-6">
-                                {{-- 圖片 --}}
-                                <img class="col-md-12" src="{{asset('upload/product/16510463406c4b761a28b734fe93831e3fb400ce87.png')}}" >
-                                <br>
-                                {{-- 次要圖片 --}}
-                                <div class="swiper mySwiper ">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/16514860258f85517967795eeef66c225f7883bdcb.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/16514860257f6ffaa6bb0b408017b62254211691b5.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/165148602537a749d808e46495a8da1e5352d03cae.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/1651046340006f52e9102a8d3be2fe5614f42ba989.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/1651046340e00da03b685a0dd18fb6a08af0923de0.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/16510463406c4b761a28b734fe93831e3fb400ce87.png')}}" alt=""></div>
 
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                            </div>
+                            {{-- 名稱 --}}
+                            <label class="h6 mb-3" for="user_name">使用者名稱
+                                <input class="col-md-12" type="text" name="user_name" id="user_name" value="{{$user->name}}">
+                            </label>
 
-                            <div class="col-md-6">
-                                <table>
-                                    <tr>
-                                        <td colspan="4" class="h3">Nintendo Switch Lite</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" class="h4" style="color: red">NT$3190</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4">「Nintendo Switch Lite」採控制器和主機一體成形、細小輕巧，是方便攜帶外出的手提專用Nintendo Switch。 支援所有可利用手提模式來玩的Nintendo Switch遊戲軟體。 不單止推薦給會經常攜帶外出遊玩的用家，想和已持有Nintendo Switch的家人朋友一起透過網路或鄰近主機連線進行多人遊戲的用家也很適合。</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>剩餘數量 27</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                            </div>
+                            {{-- 介紹 --}}
+                            <label class="h6 mb-3 " for="user_mail">信箱
+                                <input class="col-md-12" readonly type="text" id="user_mail" value="{{$user->email}}">
+                            </label>
+
+                            {{-- 價格 --}}
+                            <label class="h6 mb-3 " for="user_password">密碼
+                                <input class="col-md-12" type="text" name="user_password" id="user_password" value="{{$user->password}}">
+                            </label>
+
+                            {{-- 數量 --}}
+                            <label class="h6 mb-3 " for="user_power">權限
+                                <select name="user_power" id="user_power">
+                                    <option value="1" @if ($user->power == 1) selected @endif>管理者</option>
+                                    <option value="2" @if ($user->power == 2) selected @endif>一般會員</option>
+                                </select>
+                            </label>
+
                             {{-- 按鈕 --}}
-                            <input class="btn btn-danger" type="submit" style="width: 130px;height: 50px; margin-left:auto;" value="加入購物車">
+                            <div class="col-md-12 d-flex justify-content-between mt-3">
+                                <input type="button" onclick="location.href='/account' " value="取消" style="border:1px solid gray ;width: 130px;height: 50px;">
+                                <input type="reset" style="border:1px solid gray ;width: 130px;height: 50px;">
+                                <input class="btn btn-success align-self-center" type="submit" style="width: 130px;height: 50px;" value="儲存">
 
+                            </div>
                     </form>
                 </div>
-
             </div>
         </section>
     @endsection
@@ -353,22 +406,4 @@
     @section('js')
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 
-        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-        <script>
-            var swiper = new Swiper(".mySwiper", {
-              slidesPerView: 3,
-              spaceBetween: 10,
-              slidesPerGroup: 3,
-              loop: true,
-              loopFillGroupWithBlank: true,
-              pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-              },
-              navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-              },
-            });
-          </script>
     @endsection

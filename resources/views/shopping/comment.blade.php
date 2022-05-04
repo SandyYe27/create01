@@ -373,9 +373,11 @@
                                 <div>{{$comment->context}}</div>
                                 <div>
                                     @auth
-                                        <a href="/comment/edit/{{$comment->id}}">編輯</a>
-                                        &nbsp;
-                                        <a href="/comment/delete/{{$comment->id}}" style="color: red;">刪除</a>
+                                        @if (Auth::user()->power == 1)
+                                            <a href="/comment/edit/{{$comment->id}}">編輯</a>
+                                            &nbsp;
+                                            <a href="/comment/delete/{{$comment->id}}" style="color: red;">刪除</a>
+                                        @endif
                                     @endauth
                                 </div>
                             </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GoodController;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,22 @@ Route::prefix('/good')->middleware(['auth','power'])->group(function(){
     Route::post('/update/{id}', [GoodController::class, 'update']);//更新功能
 
     Route::delete('/delete/{id}', [GoodController::class, 'destroy']);//刪除
-    Route::delete('/delete_img/{img_id}', [GoodController::class, 'delete_img']);//刪除
+    Route::delete('/delete_img/{img_id}', [GoodController::class, 'delete_img']);//刪除次要圖片
+
+    Route::get('/information', [GoodController::class, 'information']);//商品內頁
+
+});
+
+//帳號管理相關
+Route::prefix('/account')->middleware(['auth','power'])->group(function(){
+    Route::get('/', [AccountController::class, 'index']);//總表、列表頁
+
+    Route::get('/create', [AccountController::class, 'create']);//新增頁
+    Route::post('/store', [AccountController::class, 'store']);//儲存功能//不能用get
+
+    Route::get('/edit/{id}', [AccountController::class, 'edit']);//編輯頁
+    Route::post('/update/{id}', [AccountController::class, 'update']);//更新功能
+
+    Route::delete('/delete/{id}', [AccountController::class, 'destroy']);//刪除
 
 });

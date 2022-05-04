@@ -30,14 +30,17 @@
                 {{-- <a href="/good"><button class="btn h6">Product</button></a>
                 <a href="/banner"><button class="btn h6">Banner</button></a> --}}
                 <a href="/comment"><button class="btn h6">Comment</button></a>
-                <button style="border: 0; background-color:white;"><a href="/shopping1"><i class="h3 bi bi-cart-fill"></i></a></button>
+                <a href="/shopping1"><button class="btn h6">Shopping</button></a>
 
                 @auth
                 {{--如果有登入，看到user您好，和登出鍵--}}
-                    <li class="list-unstyled">
-                        <a href="/dashboard" class="d-flex flex-wrap" style="width:100px;padding-top:13px;">{{ Auth::user()->name }}, 您好</a> {{--用 Auth::user()->name 調出使用者資料，如名字、信箱 --}}
-                    </li>
+                    @if (Auth::user()->power == 1)
+                        <a href="/dashboard"><button class="btn h6">Dashboard</button></a>
+                    @endif
 
+                    <li class="list-unstyled">
+                        <a class="d-flex flex-wrap" style="width:100px;padding-top:13px;">{{ Auth::user()->name }}, 您好</a> {{--用 Auth::user()->name 調出使用者資料，如名字、信箱 --}}
+                    </li>
                     <li class="list-unstyled">
                         <a href="" onclick="event.preventDefault(); document.querySelector('#logout_form').submit()" style="padding-top:13px;">登出</a>
                         {{--使用event.preventDefault() 來停止換頁動作、或送出表單 --}}
@@ -48,7 +51,7 @@
                 @endauth
 
 
-                {{--如果沒登入，看到登入鍵，導到登入頁login--}}
+                {{--如果沒登入，就看到登入鍵，導到登入頁login--}}
                 @guest
                     <button style="border: 0; background-color:white;">
                         <a href="/login" class="d-flex">

@@ -25,17 +25,18 @@ class AccountPower
         //John登入後會到後台（因為他是超級管理者）
         //Senna登入後只能到前台（因為她只能管理留言）
 
-        // if(Auth::user()->name == 'John'){
-        //     return $next($request);
-        // }else{
-        //     return redirect('/');
-        // }
-
         if(Auth::user()->name == 'Sandy'){
             return $next($request);
         }else{
             return redirect('/');
         }
 
+        //改用身份組判斷
+        //1.管理者 2.一般用戶
+        if(Auth::user()->power == 1){
+            return $next($request);
+        }else{
+            return redirect('/');
+        }
     }
 }

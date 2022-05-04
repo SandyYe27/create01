@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'power',
     ];
 
     /**
@@ -41,4 +44,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //一筆使用者資料
+    public function shopping_list(){
+        //一個使用者可以有很多想買的商品
+        return $this->hasMany(ShoppingCart::class, 'user_id','id');
+    }
+
 }

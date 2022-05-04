@@ -1,21 +1,20 @@
-@extends('template.template')
+@extends('layouts.app')
     @section('pageTitle')
-        編輯產品
+        新增帳號
     @endsection
 
     @section('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
         <style>
             a{
                 text-decoration: none;
             }
             nav{
-                padding: 10px 120px;
-                background-color: rgb(255, 255, 255);
+                /* background-color: aquamarine; */
+                /* padding: 10px 120px; */
                 /* width: 100%; */
                 /* position: relative; */
             }
@@ -72,6 +71,7 @@
                 height: 20px;
                 margin-top: 10px;
                 background-image: url('{{asset('img/bootstrap.img/qJeRpp_WmKGWrqc.jpeg')}}');
+
                 background-size: cover;
                 background-color: aquamarine;
             }
@@ -110,7 +110,7 @@
                 padding-top: 50px;
                 padding-bottom: 50px;
             }
-            #good{
+            #account{
                 width: 1030px;
                 /* height: 1000px; */
                 margin: 0 auto;
@@ -119,13 +119,16 @@
                 border-radius: 10px;
 
             }
+            #account a:hover{
+                text-decoration: underline
+            }
             @media (max-width:1039px) {
-                #good{
+                #account{
                     width: 100%;
                 }
             }
             @media (max-width:785px) {
-                #good{
+                #account{
                     width: 460px;
                 }
                 .steps{
@@ -133,11 +136,11 @@
                 }
             }
             @media (max-width:460px) {
-                #good{
+                #account{
                     width: 100%;
                 }
             }
-            #good .container_xxl{
+            #account .container_xxl{
                 /* background-color: rgb(213, 232, 255); */
                 /* height: 850px; */
                 position: relative;
@@ -242,133 +245,57 @@
                 justify-content: center;
                 }
             }
-            body {
-                background: #eee;
-                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-
+            .func.col-md-4.d-flex.flex-column.align-items-center > a:hover{
+                text-decoration: underline
             }
-            .swiper {
-                width: 100%;
-                height: 100%;
-            }
-            .swiper-slide {
-                text-align: center;
-                font-size: 18px;
-                background: #fff;
-
-                /* Center slide text vertically */
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: -webkit-flex;
-                display: flex;
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                -webkit-justify-content: center;
-                justify-content: center;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                -webkit-align-items: center;
-                align-items: center;
-            }
-            .swiper-slide img {
-                display: block;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
         </style>
     @endsection
 
-
     @section('main')
 
-        <section id="good" class="p-3" >
+        <section id="account" class="p-3" >
             <div class="container_xxl p-3">
                 <div class="col-md-12 d-flex justify-content-between mb-3">
-                    <h2 class="">商品內頁</h2>
+                    <h2 class="">新增帳號</h2>
                 </div>
-                <div class="col-md-12 ps-5 pe-5">
+                <div class="ps-5 pe-5">
                     {{-- enctype="multipart/form-data" --}}
-                    <form class="form row g-3" action="" method="post" enctype="multipart/form-data">
+                    {{-- <span class="h5" style="color:red;">{{ session('problem')}}</span> --}}
+
+                    @foreach ($errors->all() as $item)
+                        <span style="color: red; font-weight:600;">{{$item}} <br></span>
+                    @endforeach
+                    <br>
+                    <form class="form row g-3" action="/account/store" method="post" enctype="multipart/form-data"> {{--需和route對應--}}
                         @csrf
-                            <div class="product-images d-flex flex-column col-md-6">
-                                {{-- 圖片 --}}
-                                <img class="col-md-12" src="{{asset('upload/product/16510463406c4b761a28b734fe93831e3fb400ce87.png')}}" >
-                                <br>
-                                {{-- 次要圖片 --}}
-                                <div class="swiper mySwiper ">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/16514860258f85517967795eeef66c225f7883bdcb.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/16514860257f6ffaa6bb0b408017b62254211691b5.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/165148602537a749d808e46495a8da1e5352d03cae.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/1651046340006f52e9102a8d3be2fe5614f42ba989.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/1651046340e00da03b685a0dd18fb6a08af0923de0.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/16510463406c4b761a28b734fe93831e3fb400ce87.png')}}" alt=""></div>
+                        {{-- 使用者名稱 --}}
+                        <label class="h6 mb-3" for="name">使用者名稱
+                            <input class="col-md-12" type="text" name="name" id="name">
+                        </label>
 
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                            </div>
+                        {{-- 信箱 --}}
+                        <label class="h6 mb-3 " for="email">信箱
+                            <input class="col-md-12" type="text" name="email" id="email">
+                        </label>
 
-                            <div class="col-md-6">
-                                <table>
-                                    <tr>
-                                        <td colspan="4" class="h3">Nintendo Switch Lite</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" class="h4" style="color: red">NT$3190</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4">「Nintendo Switch Lite」採控制器和主機一體成形、細小輕巧，是方便攜帶外出的手提專用Nintendo Switch。 支援所有可利用手提模式來玩的Nintendo Switch遊戲軟體。 不單止推薦給會經常攜帶外出遊玩的用家，想和已持有Nintendo Switch的家人朋友一起透過網路或鄰近主機連線進行多人遊戲的用家也很適合。</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>剩餘數量 27</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            {{-- 按鈕 --}}
-                            <input class="btn btn-danger" type="submit" style="width: 130px;height: 50px; margin-left:auto;" value="加入購物車">
+                        {{-- 密碼 --}}
+                        <label class="h6 mb-3 " for="password">密碼
+                            <input class="col-md-12" type="password" name="password" id="password">
+                        </label>
 
+                        <label class="h6 mb-3 " for="password_confirmation">再次輸入密碼
+                            <input class="col-md-12" type="password" name="password_confirmation" id="password">
+                        </label>
+
+                        {{-- 送出按鈕 --}}
+                        <div class="col-md-12 d-flex justify-content-between mt-3">
+                            <input type ="button" onclick="location.href='/account' " value="取消" style="border:1px solid gray ; width: 130px;height: 50px;">
+                            <input type="reset" style="border:1px solid gray ;width: 130px;height: 50px;">
+                            <input class="btn btn-success align-self-center" type="submit" style="width: 130px;height: 50px;" value="新增帳號">
+                        </div>
                     </form>
-                </div>
 
+                </div>
             </div>
         </section>
-    @endsection
-
-    @section('js')
-        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-
-        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-        <script>
-            var swiper = new Swiper(".mySwiper", {
-              slidesPerView: 3,
-              spaceBetween: 10,
-              slidesPerGroup: 3,
-              loop: true,
-              loopFillGroupWithBlank: true,
-              pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-              },
-              navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-              },
-            });
-          </script>
     @endsection
