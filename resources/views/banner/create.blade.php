@@ -385,8 +385,8 @@
 
                         {{-- 送出按鈕 --}}
                         <div class="col-md-12 d-flex justify-content-between mt-3">
-                            <input type ="button" onclick="location.href='/banner' " value="返回Banner管理" style="width: 130px;height: 50px;">
-                            <input type="reset"style="width: 130px;height: 50px;">
+                            <input type ="button" onclick="location.href='/banner' " value="返回Banner管理" style="border:1px solid gray ; width: 130px;height: 50px;">
+                            <input type="reset" style="border:1px solid gray ;width: 130px;height: 50px;">
                             <input class="btn btn-success align-self-center" type="submit"style="width: 130px;height: 50px;" value="新增BANNER">
 
                         </div>

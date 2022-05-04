@@ -55,6 +55,7 @@
             @media (max-width:768px) {
                 nav img{
                     width: 80px;
+                    margin-top: 10px;
                 }
                 .navbar-right-button{
                     display: none;
@@ -242,14 +243,9 @@
                 justify-content: center;
                 }
             }
-            body {
-                background: #eee;
-                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-
-            }
             .swiper {
                 width: 100%;
-                height: 100%;
+                /* height: 100%; */
             }
             .swiper-slide {
                 text-align: center;
@@ -282,20 +278,30 @@
             #qty{
                 width: 50px;
             }
+            .product_detials > div{
+                width: 50%;
+            }
+            @media (max-width:783px) {
+                .product_detials > div{
+                    margin-bottom: 10px;
+                    width: 100% ;
+                }
+            }
+
         </style>
     @endsection
 
 
     @section('main')
-
+    
         <section id="good" class="p-3" >
             <div class="container_xxl p-3">
                  {{-- 返回首頁 --}}
                 <div class="mb-3">
                     <a href="/" style="color: black"><div style="font-size:18px; font-weight: 600;"> ← 返回首頁</div> </a>
                 </div>
-                <div class="col-md-12 ps-3 pe-3 d-flex flex-wrap justify-content-between">
-                    <div class="product-images d-flex flex-column col-md-6">
+                <div class="product_detials col-md-12 ps-3 pe-3 d-flex flex-wrap justify-content-between">
+                    <div class="product-images d-flex flex-column ">
                         {{-- 圖片 --}}
                         <img class="col-md-12" src="{{$product->img_path}}" >
                         <br>
@@ -313,17 +319,18 @@
                         </div>
                     </div>
                     {{--詳情 --}}
-                    <div class="col-md-6 d-flex flex-column">
+                    <div class=" d-flex flex-column">
 
-                        <h2 class="">{{$product->product_name}}</h2>
+                        <h2 class="ms-3">{{$product->product_name}}</h2>
 
-                        <div class="sum-price h3 mb-4" style="color: red;">NT$ {{$product->product_price}}</div>
+                        <div class="sum-price h3 mb-4 ms-3" style="color: red;">NT$ {{$product->product_price}}</div>
 
-                        <div class="mb-4">{{$product->product_description}}</div>
+                        <div class="mb-4 ms-3" >{{$product->product_description}}</div>
 
-                        <div class="h5 mb-4" style="color: gray">剩餘數量 {{$product->product_amount}}</div>
+                        <div class="h5 mb-4 ms-3" style="color: gray">剩餘數量 {{$product->product_amount}}</div>
 
-                        <div class="quantity d-flex align-self-end mb-4 me-4" style="width: 60px;">
+                        <div class="quantity d-flex align-self-end mb-4 me-2" >
+                            <span class="me-2 mt-1 h6">選擇數量</span>
                             <i class="fa-solid fa-minus mt-1 me-2" id="minus"></i>
                             <input type="number" value="1" name="qty" id="qty">
                             <i class="fa-solid fa-plus mt-1 ms-2" id="plus"></i>
@@ -379,7 +386,6 @@
                     //!!兩個驚嘆號（ 跟{{}}意思一樣 ），但可以檢查字串是否有攻擊事件，把內容轉換成最純粹的字串
                     qty.value = parseInt(qty.value) + 1  //parseInt把字串轉為數字，數字跟數字才能相加（因為字串1 加 字串1 等於11，但我們是要數字相加，所以要轉成數字1加1等於2 ）
                 }
-
             }
 
             add_product.onclick = function(){

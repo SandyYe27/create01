@@ -416,7 +416,7 @@
                                 &nbsp;
                                 <div>+</div>
                             </div>
-                            <div style="width:60px;">$10.50</div>
+                            <div style="width:60px;">NT$10.50</div>
                         </div>
                     </div>
                     <hr>
@@ -442,7 +442,7 @@
                                 &nbsp;
                                 <div>+</div>
                             </div>
-                            <div style="width:60px;">$10.50</div>
+                            <div style="width:60px;">NT$10.50</div>
                         </div>
                     </div>
                     <hr>
@@ -467,7 +467,7 @@
                                 &nbsp;
                                 <div>+</div>
                             </div>
-                            <div style="width:60px;">$10.50</div>
+                            <div style="width:60px;">NT$10.50</div>
                         </div>
                     </div>
                     <hr>
