@@ -136,13 +136,5 @@ class GoodController extends Controller
 
     }
 
-    public function information(){
-        $header = '商品內頁';
-        $slot = '';
-        return view('good.information',compact('header','slot'));
-        //主要圖片、商品詳情
-        //次要圖片
-
-    }
-
+   
 }

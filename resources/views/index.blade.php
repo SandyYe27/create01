@@ -209,7 +209,7 @@
 
 
     @section('main')
-    
+
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RWLAmj?ver=35aa&q=0&m=8&h=472&w=1259&b=%23FFFFFFFF&l=f&x=0&y=0&s=1898&d=712&aim=true" alt=""></div>
@@ -537,12 +537,14 @@
                 <div class="row d-flex justify-content-between">
                     @foreach ($good1 as $goods)
                         <div class="card mb-3 p-3">
-                            <img src="{{$goods->img_path}}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="subtitle">CATEGORY</p>
-                                <h5 class="card-title">{{$goods->product_name}}</h5>
-                                <p class="card-text">NT${{$goods->product_price}}</p>
-                            </div>
+                            <a href="/product_detail/{{$goods->id}}">
+                                <img src="{{$goods->img_path}}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="subtitle">CATEGORY</p>
+                                    <h5 class="card-title">{{$goods->product_name}}</h5>
+                                    <p class="card-text">NT${{$goods->product_price}}</p>
+                                </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>

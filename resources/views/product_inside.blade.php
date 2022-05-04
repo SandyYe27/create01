@@ -1,6 +1,6 @@
 @extends('template.template')
     @section('pageTitle')
-        編輯產品
+        商品詳情
     @endsection
 
     @section('css')
@@ -276,7 +276,12 @@
                 height: 100%;
                 object-fit: cover;
             }
-
+            .quantity > i:hover{
+                cursor: pointer;
+            }
+            #qty{
+                width: 50px;
+            }
         </style>
     @endsection
 
@@ -285,67 +290,51 @@
 
         <section id="good" class="p-3" >
             <div class="container_xxl p-3">
-                <div class="col-md-12 d-flex justify-content-between mb-3">
-                    <h2 class="">商品內頁</h2>
+                 {{-- 返回首頁 --}}
+                <div class="mb-3">
+                    <a href="/" style="color: black"><div style="font-size:18px; font-weight: 600;"> ← 返回首頁</div> </a>
                 </div>
-                <div class="col-md-12 ps-5 pe-5">
-                    {{-- enctype="multipart/form-data" --}}
-                    <form class="form row g-3" action="" method="post" enctype="multipart/form-data">
-                        @csrf
-                            <div class="product-images d-flex flex-column col-md-6">
-                                {{-- 圖片 --}}
-                                <img class="col-md-12" src="{{asset('upload/product/16510463406c4b761a28b734fe93831e3fb400ce87.png')}}" >
-                                <br>
-                                {{-- 次要圖片 --}}
-                                <div class="swiper mySwiper ">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/16514860258f85517967795eeef66c225f7883bdcb.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/16514860257f6ffaa6bb0b408017b62254211691b5.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/165148602537a749d808e46495a8da1e5352d03cae.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/1651046340006f52e9102a8d3be2fe5614f42ba989.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/1651046340e00da03b685a0dd18fb6a08af0923de0.png')}}" alt=""></div>
-                                        <div class="swiper-slide"><img src="{{asset('upload/product/16510463406c4b761a28b734fe93831e3fb400ce87.png')}}" alt=""></div>
+                <div class="col-md-12 ps-3 pe-3 d-flex flex-wrap justify-content-between">
+                    <div class="product-images d-flex flex-column col-md-6">
+                        {{-- 圖片 --}}
+                        <img class="col-md-12" src="{{$product->img_path}}" >
+                        <br>
+                        {{-- 次要圖片 --}}
+                        <div class="swiper mySwiper ">
+                            <div class="swiper-wrapper">
 
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
+                                @foreach ($product->imgs as $item)
+                                    <div class="swiper-slide"><img src="{{$item->img_path}}" alt=""></div>
+                                @endforeach
                             </div>
 
-                            <div class="col-md-6">
-                                <table>
-                                    <tr>
-                                        <td colspan="4" class="h3">Nintendo Switch Lite</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" class="h4" style="color: red">NT$3190</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4">「Nintendo Switch Lite」採控制器和主機一體成形、細小輕巧，是方便攜帶外出的手提專用Nintendo Switch。 支援所有可利用手提模式來玩的Nintendo Switch遊戲軟體。 不單止推薦給會經常攜帶外出遊玩的用家，想和已持有Nintendo Switch的家人朋友一起透過網路或鄰近主機連線進行多人遊戲的用家也很適合。</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>剩餘數量 27</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            {{-- 按鈕 --}}
-                            <input class="btn btn-danger" type="submit" style="width: 130px;height: 50px; margin-left:auto;" value="加入購物車">
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+                    {{--詳情 --}}
+                    <div class="col-md-6 d-flex flex-column">
 
-                    </form>
+                        <h2 class="">{{$product->product_name}}</h2>
+
+                        <div class="sum-price h3 mb-4" style="color: red;">NT$ {{$product->product_price}}</div>
+
+                        <div class="mb-4">{{$product->product_description}}</div>
+
+                        <div class="h5 mb-4" style="color: gray">剩餘數量 {{$product->product_amount}}</div>
+
+                        <div class="quantity d-flex align-self-end mb-4 me-4" style="width: 60px;">
+                            <i class="fa-solid fa-minus mt-1 me-2" id="minus"></i>
+                            <input type="number" value="1" name="qty" id="qty">
+                            <i class="fa-solid fa-plus mt-1 ms-2" id="plus"></i>
+                        </div>
+
+                        <div class="r-button align-self-end">
+                            <input type="number" id="product_id" value="{{$product->id}}" hidden>
+                            <a class="btn btn-danger" role="button" id="add_product">加入購物車</a>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </section>
     @endsection
@@ -370,5 +359,60 @@
                 prevEl: ".swiper-button-prev",
               },
             });
-          </script>
+        </script>
+
+        <script>
+            const minus = document.querySelector('#minus')
+            const qty = document.querySelector('#qty')
+            const plus = document.querySelector('#plus')
+            const add_product = document.querySelector('#add_product')
+
+
+            minus.onclick = function(){
+                if(parseInt(qty.value) >= 2){
+                    qty.value = parseInt(qty.value) - 1
+                }
+            }
+
+            plus.onclick = function(){
+                if(parseInt(qty.value) < {!! $product->product_amount !!} ){
+                    //!!兩個驚嘆號（ 跟{{}}意思一樣 ），但可以檢查字串是否有攻擊事件，把內容轉換成最純粹的字串
+                    qty.value = parseInt(qty.value) + 1  //parseInt把字串轉為數字，數字跟數字才能相加（因為字串1 加 字串1 等於11，但我們是要數字相加，所以要轉成數字1加1等於2 ）
+                }
+
+            }
+
+            add_product.onclick = function(){
+
+                //在JS建立一個虛擬的form表單
+                var formData = new FormData();
+
+                formData.append('add_qty', parseInt(qty.value));
+                formData.append('product_id',  {!! $product->id !!} );
+                formData.append('_token',  '{!! csrf_token() !!}' );
+
+                // 利用fetch將form表單送到後台
+                fetch('/add_to_cart',{
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .catch(error =>{
+                    alert('新增失敗，請再試一次')
+                    return 'error';
+                })
+                .then(response =>{
+                    console.log(response);
+
+                    if(response != 'error'){
+                        if (response.result == 'success')
+                            alert('新增成功')
+                        else{
+                            alert('新增失敗：' + response.message)
+                        }
+                    }
+                });
+            }
+        </script>
+
     @endsection

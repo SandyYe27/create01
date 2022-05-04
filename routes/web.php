@@ -22,11 +22,18 @@ use App\Http\Controllers\AccountController;
 
 Route::get('/', [Controller::class, 'index']);
 
+
+//商品詳情
+Route::get('/product_detail/{id}', [Controller::class, 'product']); //商品內頁
+//接受加入購物車的請求
+Route::post('/add_to_cart', [Controller::class, 'add_cart']);  //加入購物車
+
+
+
 //後台首頁
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth','power'])->name('dashboard');//使用auth和power這兩個middleware
-
 
 require __DIR__.'/auth.php';
 
@@ -72,8 +79,6 @@ Route::prefix('/good')->middleware(['auth','power'])->group(function(){
 
     Route::delete('/delete/{id}', [GoodController::class, 'destroy']);//刪除
     Route::delete('/delete_img/{img_id}', [GoodController::class, 'delete_img']);//刪除次要圖片
-
-    Route::get('/information', [GoodController::class, 'information']);//商品內頁
 
 });
 

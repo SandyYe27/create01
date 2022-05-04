@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Comments;
 use App\Models\Good;
+use App\Models\ShoppingCart;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class Controller extends BaseController
@@ -33,12 +36,63 @@ class Controller extends BaseController
     // public function abcd(){
     //     return view('切微軟');
     // }
+
+
+    public function product($id){
+
+        $product = Good::find($id);
+
+        return view('product_inside',compact('product'));
+
+    }
+
+    public function add_cart(Request $request){
+
+        $product = Good::find($request->product_id);
+
+        // 檢查輸入的購買數量合不合理
+        if ($request->add_qty > $product->product_amount){
+            $result = [
+                'result' => 'error',
+                'message' => '欲購買數量超過庫存，請重新選擇或聯絡客服',
+            ];
+            return $result;
+
+        }elseif($request->add_qty < 1){
+            $result = [
+                'result' => 'error',
+                'message' => '購買數量異常，請重新確認或聯絡客服',
+            ];
+            return $result;
+        }
+
+        //檢查是否有登入
+        if(!Auth::check()){
+            $result = [
+                'result' => 'error',
+                'message' => '請先登入',
+            ];
+            return $result;
+        }
+
+        ShoppingCart::create([
+            'product_id' => $request->product_id,
+            'user_id' => Auth::user()->id,
+            'qty' => $request->add_qty,
+        ]);
+        $result =[
+            'result' => 'success',
+        ];
+        return $result;
+    }
+
+
     public function login(){
         return view('shopping.login');
     }
 
 
-    public function comment(){ //這段的目的是為了抓取資料庫的所有留言回傳給頁面
+    public function comment(){ //這段的目的是抓取資料庫的所有留言回傳給頁面
 
         // $comments = DB::table('comments')->orderBy('id' , 'desc')->take(3)->get();直接存取
         // dd($comments);
