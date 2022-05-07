@@ -1,6 +1,6 @@
 @extends('layouts.app')
     @section('pageTitle')
-        編輯產品
+        編輯訂單
     @endsection
 
     @section('css')
@@ -110,7 +110,7 @@
                 padding-top: 50px;
                 padding-bottom: 50px;
             }
-            #good{
+            #account{
                 width: 1030px;
                 /* height: 1000px; */
                 margin: 0 auto;
@@ -120,12 +120,12 @@
 
             }
             @media (max-width:1039px) {
-                #good{
+                #account{
                     width: 100%;
                 }
             }
             @media (max-width:785px) {
-                #good{
+                #account{
                     width: 460px;
                 }
                 .steps{
@@ -133,11 +133,11 @@
                 }
             }
             @media (max-width:460px) {
-                #good{
+                #account{
                     width: 100%;
                 }
             }
-            #good .container_xxl{
+            #account .container_xxl{
                 /* background-color: rgb(213, 232, 255); */
                 /* height: 850px; */
                 position: relative;
@@ -148,14 +148,14 @@
                 padding-top: 20px;
 
             }
-            #good .steps{
+            #account .steps{
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 height: 70px;
             }
 
-            #good .steps .step{
+            #account .steps .step{
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
@@ -167,7 +167,7 @@
                 position: relative;
             }
 
-            #good .steps .step::before{
+            #account .steps .step::before{
                 /* content: '確認購物車'; */
                 content: attr(data-text);
                 position: absolute;
@@ -178,7 +178,7 @@
 
             }
 
-            #good .steps .buy-progress-bar{
+            #account .steps .buy-progress-bar{
                 /* width: 180px; */
                 width: 17%;
                 height: 8px;
@@ -188,15 +188,15 @@
             }
 
             @media (max-width:785px) {
-                #good .steps .buy-progress-bar{
+                #account .steps .buy-progress-bar{
                     width: 10%;
                 }
             }
-            #good .steps .green{
+            #account .steps .green{
                 background-color: rgb(15, 190, 105);
                 color: white;
             }
-            #good .steps .progress-25::before{
+            #account .steps .progress-25::before{
                 content: '';
                 width: 100%;
                 height: 100%;
@@ -204,7 +204,7 @@
                 display: block;
                 border-radius: 5px;
             }
-            #good .steps .progress-50::before{
+            #account .steps .progress-50::before{
                 content: '';
                 width: 100%;
                 height: 100%;
@@ -212,7 +212,7 @@
                 display: block;
                 border-radius: 5px;
             }
-            #good .steps .progress-75::before{
+            #account .steps .progress-75::before{
                 content: '';
                 width: 35%;
                 height: 100%;
@@ -356,66 +356,56 @@
 
     @section('main')
 
-        <section id="good" class="p-3" >
+        <section id="account" class="p-3" >
             <div class="container_xxl p-3">
                 <div class="col-md-12 d-flex justify-content-between mb-3">
-                    <h2 class="">{{$good->product_name}}</h2>
+                    <h2 class="">編輯訂單
+                    </h2>
                 </div>
                 <div class="col-md-12 ps-5 pe-5">
                     {{-- enctype="multipart/form-data" --}}
-                    <form class="form row g-3" action="/good/update/{{$good->id}}" method="post" enctype="multipart/form-data">
+                    <form class="form row g-3" action="/order/update/{{$order->id}}" method="post" enctype="multipart/form-data">
                         @csrf
-                            {{-- 圖片 --}}
-                            <div class="h6">目前的主要圖片</div>
-                            <img src="{{$good->img_path}}" alt="" style="width: 100%;">
-                            {{-- 次要圖片 --}}
-                            <label class="h6 mb-3" for="img_path">選擇新的主要圖片
-                                <input class="col-md-12" type="file" name="img_path" id="img_path" accept="image/*">
+
+                            {{-- 訂單編號 --}}
+                            <label class="h6 mb-3 " for="order_id">訂單編號
+                                <input class="col-md-12" type="text" name="order_id" id="order_id" value="{{$order->id}}">
                             </label>
 
-                            <label for="">目前的次要圖片</label>
-                            <div class="h6 d-flex flex-wrap">
-                                @foreach ($good->imgs as $item)
-                                    <div class="col-md-3 d-flex flex-column me-1"  id="sup_img{{$item->id}}">
-                                        <img class="mb-3" src="{{$item->img_path}}" alt="">
-                                        <button class="btn btn-danger align-self-center" type="button" onclick="delete_img({{$item->id}})">刪除圖片</button>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                            <label class="h6 mb-3" for="second-img">選擇新的次要圖片
-                                <input class="col-md-12" type="file" name="second_img[]" id="second_img" multiple accept="image/*">
+                            {{-- 會員id --}}
+                            <label class="h6 mb-3" for="user_id">會員編號
+                                <input class="col-md-12" readonly type="text" id="user_id" value="{{$order->user_id}}">
                             </label>
 
-                            {{-- 名稱 --}}
-                            <label class="h6 mb-3" for="product_name">產品名稱
-                                <input class="col-md-12" type="text" name="product_name" id="product_name" value="{{$good->product_name}}">
+                            {{-- 會員姓名 --}}
+                            <label class="h6 mb-3" for="user_name">會員姓名
+                                <input class="col-md-12" readonly type="text" id="user_name" value="{{$order->name}}">
                             </label>
 
-                            {{-- 介紹 --}}
-                            <label class="h6 mb-3 " for="product_description">產品介紹
-                                <input class="col-md-12" type="text" name="product_description" id="product_description" value="{{$good->product_description}}">
+                            {{-- 信箱 --}}
+                            <label class="h6 mb-3 " for="user_mail">信箱
+                                <input class="col-md-12" readonly type="text" id="user_mail" value="{{$order->email}}">
                             </label>
 
-                            {{-- 價格 --}}
-                            <label class="h6 mb-3 " for="product_price">產品價格
-                                <input class="col-md-12" type="number" name="product_price" id="product_price" value="{{$good->product_price}}">
+                            <label class="h6 mb-3 " for="user_phone">電話
+                                <input class="col-md-12" readonly type="text" id="user_phone" value="{{$order->phone}}">
                             </label>
 
-                            {{-- 數量 --}}
-                            <label class="h6 mb-3 " for="product_amount">產品數量
-                                <input class="col-md-12" type="number" name="product_amount" id="product_amount" value="{{$good->product_amount}}">
+
+                            {{-- 信箱 --}}
+                            <label class="h6 mb-3 " for="ps">備註
+                                <input class="col-md-12" readonly type="text" id="ps" value="{{$order->ps}}">
                             </label>
+
 
                             {{-- 按鈕 --}}
                             <div class="col-md-12 d-flex justify-content-between mt-3">
-                                <input type="button" onclick="location.href='/good' " value="返回產品管理" style="border:1px solid gray ;width: 130px;height: 50px;">
+                                <input type="button" onclick="location.href='/account' " value="取消" style="border:1px solid gray ;width: 130px;height: 50px;">
                                 <input type="reset" style="border:1px solid gray ;width: 130px;height: 50px;">
-                                <input class="btn btn-success align-self-center" type="submit" style="width: 130px;height: 50px;" value="送出">
+                                <input class="btn btn-success align-self-center" type="submit" style="width: 130px;height: 50px;" value="儲存">
 
                             </div>
                     </form>
-
                 </div>
             </div>
         </section>

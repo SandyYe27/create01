@@ -8,7 +8,6 @@
         <style>
             a{
                 text-decoration: none;
-                
 
             }
             nav{
@@ -69,7 +68,8 @@
                 width: 20px;
                 height: 20px;
                 margin-top: 10px;
-                background-image: url('./img/qJeRpp_WmKGWrqc.jpeg');
+                background-image: url('{{asset('img/bootstrap.img/qJeRpp_WmKGWrqc.jpeg')}}');
+
                 background-size: cover;
                 background-color: aquamarine;
             }
@@ -82,10 +82,8 @@
                 }
             }
             nav .ham-div{
-                /* height: 250px; */
                 display: none;
                 background-color: rgb(255, 255, 255);
-                /* position: absolute; */
                 top: 80px;
                 z-index: 1;
                 margin-left: -10px;

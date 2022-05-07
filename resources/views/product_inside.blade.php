@@ -245,11 +245,9 @@
             }
             .swiper {
                 width: 100%;
-                /* height: 100%; */
             }
             .swiper-slide {
                 text-align: center;
-                font-size: 18px;
                 background: #fff;
 
                 /* Center slide text vertically */
@@ -269,8 +267,7 @@
             .swiper-slide img {
                 display: block;
                 width: 100%;
-                height: 100%;
-                object-fit: cover;
+                /* object-fit: cover; */
             }
             .quantity > i:hover{
                 cursor: pointer;
@@ -286,6 +283,7 @@
                     margin-bottom: 10px;
                     width: 100% ;
                 }
+
             }
 
         </style>
@@ -293,7 +291,7 @@
 
 
     @section('main')
-    
+
         <section id="good" class="p-3" >
             <div class="container_xxl p-3">
                  {{-- 返回首頁 --}}
@@ -338,7 +336,7 @@
 
                         <div class="r-button align-self-end">
                             <input type="number" id="product_id" value="{{$product->id}}" hidden>
-                            <a class="btn btn-danger" role="button" id="add_product">加入購物車</a>
+                            <a class="btn btn-danger" role="button" id="add_product" style="height:45px; display:flex; align-items:center;">加入購物車</a>
                         </div>
                     </div>
                 </div>

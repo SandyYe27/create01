@@ -68,7 +68,8 @@
                 width: 20px;
                 height: 20px;
                 margin-top: 10px;
-                background-image: url('./img/qJeRpp_WmKGWrqc.jpeg');
+                background-image: url('{{asset('img/bootstrap.img/qJeRpp_WmKGWrqc.jpeg')}}');
+
                 background-size: cover;
                 background-color: aquamarine;
             }
@@ -81,10 +82,8 @@
                 }
             }
             nav .ham-div{
-                /* height: 250px; */
                 display: none;
                 background-color: rgb(255, 255, 255);
-                /* position: absolute; */
                 top: 80px;
                 z-index: 1;
                 margin-left: -10px;
@@ -357,82 +356,87 @@
     @section('main')
 
         <section id="shopping-step03" class="pt-3 pb-3">
-            <div class="container_xxl">
-                <div class="buy-progress">
-                    <h2 class="ms-5">購物車</h2>
-                    <div class="steps">
-                        <div class="step green" data-text="確認購物車">1</div>
-                        <div class="buy-progress-bar progress-25"></div>
-                        <div class="step green" data-text=" 付款與運送方式">2</div>
-                        <div class="buy-progress-bar progress-50"></div>
-                        <div class="step green" data-text=" 填寫資料">3</div>
-                        <div class="buy-progress-bar progress-75"></div>
-                        <div class="step" data-text=" 完成訂購">4</div>
+            <form action="/shopping4" method="POST">
+                @csrf
+                <div class="container_xxl">
+                    <div class="buy-progress">
+                        <h2 class="ms-5">購物車</h2>
+                        <div class="steps">
+                            <div class="step green" data-text="確認購物車">1</div>
+                            <div class="buy-progress-bar progress-25"></div>
+                            <div class="step green" data-text=" 付款與運送方式">2</div>
+                            <div class="buy-progress-bar progress-50"></div>
+                            <div class="step green" data-text=" 填寫資料">3</div>
+                            <div class="buy-progress-bar progress-75"></div>
+                            <div class="step" data-text=" 完成訂購">4</div>
+                        </div>
+                    </div>
+                    <hr class="mt-5">
+                    <div class="ms-5 me-5 mt-5">
+                        <p>寄送資料</p>
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <label for="inputName" class="form-label">姓名</label>
+                                <input type="email" class="form-control" id="inputName" placeholder="王小明">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="inputPhone" class="form-label">電話</label>
+                                <input type="password" class="form-control" id="inputPhone" placeholder="0912345678">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputEmail" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="inputEmail" placeholder="abc@gmail.com" >
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputCity" class="form-label">城市</label>
+                                <input type="text" class="form-control" id="inputCity" placeholder="城市">
+                            </div>
+                            <div class="col-md-6 mt-5">
+                                <input type="text" class="form-control" id="inputCity" placeholder="郵遞區號">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" id="inputCity" placeholder="地址">
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mt-5">
+                    <div class="total-box" style="height: 200px;">
+                        <table>
+                            <tr>
+                                <td>數量：</td>
+                                <td></td>
+                                <td></td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>小計：</td>
+                                <td></td>
+                                <td></td>
+                                <td >$24.90</td>
+                            </tr>
+                            <tr>
+                                <td>運費：</td>
+                                <td></td>
+                                <td></td>
+                                <td>$24.90</td>
+                            </tr>
+                            <tr>
+                                <td>總計：</td>
+                                <td></td>
+                                <td></td>
+                                <td>$24.90</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <hr>
+                    <div class="next-step d-flex justify-content-between mt-5">
+                        <a href="/shopping2" style="color:white;">
+                            <button class="btn btn-primary" style="width: 130px;height: 50px;">上一步</button>
+                        </a>
+                        <button class="btn btn-primary" style="width: 130px;height: 50px;"> 下一步</button>
                     </div>
                 </div>
-                <hr class="mt-5">
-                <div class="ms-5 me-5 mt-5">
-                    <p>寄送資料</p>
-                    <form class="row g-3">
-                        <div class="col-md-12">
-                          <label for="inputName" class="form-label">姓名</label>
-                          <input type="email" class="form-control" id="inputName" placeholder="王小明">
-                        </div>
-                        <div class="col-md-12">
-                          <label for="inputPhone" class="form-label">電話</label>
-                          <input type="password" class="form-control" id="inputPhone" placeholder="0912345678">
-                        </div>
-                        <div class="col-12">
-                          <label for="inputEmail" class="form-label">Email</label>
-                          <input type="text" class="form-control" id="inputEmail" placeholder="abc@gmail.com" >
-                        </div>
-                        <div class="col-md-6">
-                          <label for="inputCity" class="form-label">城市</label>
-                          <input type="text" class="form-control" id="inputCity" placeholder="城市">
-                        </div>
-                        <div class="col-md-6 mt-5">
-                            <input type="text" class="form-control" id="inputCity" placeholder="郵遞區號">
-                        </div>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" id="inputCity" placeholder="地址">
-                        </div>
+            </form>
 
-                    </form>
-                </div>
-                <hr class="mt-5">
-                <div class="total-box" style="height: 200px;">
-                    <table>
-                        <tr>
-                            <td>數量：</td>
-                            <td></td>
-                            <td></td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>小計：</td>
-                            <td></td>
-                            <td></td>
-                            <td >$24.90</td>
-                        </tr>
-                        <tr>
-                            <td>運費：</td>
-                            <td></td>
-                            <td></td>
-                            <td>$24.90</td>
-                        </tr>
-                        <tr>
-                            <td>總計：</td>
-                            <td></td>
-                            <td></td>
-                            <td>$24.90</td>
-                        </tr>
-                    </table>
-                </div>
-                <hr>
-                <div class="next-step d-flex justify-content-between mt-5">
-                    <a href="/shopping2" style="color:white;"><button class="btn btn-primary" style="width: 130px;height: 50px;">上一步</button></a>
-                    <a href="/shopping4" style="color:white;"><button class="btn btn-primary" style="width: 130px;height: 50px;"> 下一步</button></a>
-                </div>
-            </div>
         </section>
     @endsection

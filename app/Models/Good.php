@@ -3,6 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Product_img;
+use App\Models\ShoppingCart;
+
+
 
 class Good extends Model
 {
@@ -24,7 +28,7 @@ class Good extends Model
 
     public function shoppingCart(){
         //可以同時存在很多個購物明細中
-        return $this->hasMany(ShoppingCart::class,'','');
+        return $this->hasMany(ShoppingCart::class,'product_id','id');
     }
 
 }

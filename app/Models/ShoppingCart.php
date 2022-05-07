@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Modles\Good;
-use App\Modles\User;
+use App\Models\Good;
+use App\Models\User;
 
 
 /**
@@ -41,7 +41,7 @@ class ShoppingCart extends Model
     public function user(){
         //一定屬於某一個使用者
         //belongsTo /belongsToMany  格式（對照的Model::class,'自己的欄位','對方的欄位'）
-        return $this->belongsTo(Good::class,'user_id','id');
+        return $this->belongsTo(User::class,'user_id','id');
         //這編寫belongsTo，對方就會寫hasMany
     }
 }

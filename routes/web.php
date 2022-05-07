@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\View;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GoodController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\OrderController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +41,18 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
+//訂單相關
+Route::prefix('/order')->middleware(['auth','power'])->group(function(){
+
+    Route::get('/', [OrderController::class, 'index']);//訂單列表頁
+
+    Route::get('/edit/{id}', [OrderController::class, 'edit']);//編輯頁
+    Route::post('/update/{id}', [OrderController::class, 'update']);//更新功能
+
+});
+
+
+
 //留言相關
 Route::get('/comment', [Controller::class, 'comment']);
 Route::get('/comment/save', [Controller::class, 'save_comment']);
@@ -47,11 +62,13 @@ Route::get('/comment/update/{id}', [Controller::class, 'update_comment']);
 
 
 //購物車相關
-Route::get('/shopping1', [ShoppingCarController::class, 'step01']);
-Route::get('/shopping2', [ShoppingCarController::class, 'step02']);
-Route::get('/shopping3', [ShoppingCarController::class, 'step03']);
-Route::get('/shopping4', [ShoppingCarController::class, 'step04']);
+Route::middleware(['auth'])->group(function(){
 
+    Route::get('/shopping1', [ShoppingCarController::class, 'step01']);
+    Route::post('/shopping2', [ShoppingCarController::class, 'step02']);
+    Route::post('/shopping3', [ShoppingCarController::class, 'step03']);
+    Route::post('/shopping4', [ShoppingCarController::class, 'step04']);
+});
 
 //Banner相關
 Route::prefix('/banner')->middleware(['auth','power'])->group(function(){

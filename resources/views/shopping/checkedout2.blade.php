@@ -59,13 +59,13 @@
                 }
             }
 
-            label{
+            nav label{
                 width: 40px;
                 height: 40px;
                 display: none;
 
             }
-            label > div{
+            nav label > div{
                 width: 20px;
                 height: 20px;
                 margin-top: 10px;
@@ -73,11 +73,11 @@
                 background-size: cover;
                 background-color: aquamarine;
             }
-            label:hover{
+            nav label:hover{
                 cursor: pointer;
             }
             @media (max-width:768px) {
-                label{
+                nav label{
                     display: block;
                 }
             }
@@ -358,73 +358,91 @@
     @endsection
 
     @section('main')
-
         <section id="shopping-step02" class="pt-3 pb-3">
-            <div class="container_xxl">
-                <div class="buy-progress">
-                    <h2 class="ms-5">購物車</h2>
-                    <div class="steps">
-                        <div class="step green" data-text="確認購物車">1</div>
-                        <div class="buy-progress-bar progress-25"></div>
-                        <div class="step green" data-text=" 付款與運送方式">2</div>
-                        <div class="buy-progress-bar progress-50"></div>
-                        <div class="step" data-text=" 填寫資料">3</div>
-                        <div class="buy-progress-bar"></div>
-                        <div class="step" data-text=" 完成訂購">4</div>
+            <form action="/shopping3" method="POST">
+                @csrf
+                <div class="container_xxl">
+                    <div class="buy-progress">
+                        <h2 class="ms-5">購物車</h2>
+                        <div class="steps">
+                            <div class="step green" data-text="確認購物車">1</div>
+                            <div class="buy-progress-bar progress-25"></div>
+                            <div class="step green" data-text=" 付款與運送方式">2</div>
+                            <div class="buy-progress-bar progress-50"></div>
+                            <div class="step" data-text=" 填寫資料">3</div>
+                            <div class="buy-progress-bar"></div>
+                            <div class="step" data-text=" 完成訂購">4</div>
+                        </div>
+                    </div>
+                    <hr class="mt-5">
+                    <div class="list-detail ms-5 d-flex align-items-center">付款方式</div>
+                    <div class="pay-list">
+                        <div class="pay-option">
+                            <input class="me-2 mb-4" type="radio" name="pay" id="creditcard" value="1">
+                            <label for="creditcard">信用卡付款</label>
+                        </div>
+                        <hr class="mb-3" style="width: 90%;">
+                        <div class="pay-option">
+                            <input class="me-2 mb-4" type="radio" name="pay" id="atm" value="2">
+                            <label for="atm">網路 ATM</label>
+                        </div>
+                        <hr class="mb-3" style="width: 90%;">
+                        <div class="pay-option">
+                            <input class="me-2 mb-4" type="radio" name="pay" id="store" value="3">
+                            <label for="store">超商代碼</label>
+                        </div>
+                    </div>
+                    <hr class="mt-4">
+                    <div class="list-detail ms-5 d-flex align-items-center">運送方式</div>
+                    <div class="fee-list">
+                        <div class="fee-option">
+                            <input class="me-2 mb-4" type="radio" name="deliver" id="yamato" value="1">
+                            <label for="yamato">黑貓宅配</label>
+                        </div>
+                        <hr class="mb-3" style="width: 90%;">
+                        <div class="fee-option">
+                            <input class="me-2 mb-4" type="radio" name="deliver" id="tostore" value="2">
+                            <label for="tostore">超商店到店</label>
+                        </div>
+                    </div>
+                    <hr class="mt-4">
+                    <div class="total-box">
+                        <table>
+                            <tr>
+                                <td>數量：</td>
+                                <td></td>
+                                <td></td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>小計：</td>
+                                <td></td>
+                                <td></td>
+                                <td >$24.90</td>
+                            </tr>
+                            <tr>
+                                <td>運費：</td>
+                                <td></td>
+                                <td></td>
+                                <td>$24.90</td>
+                            </tr>
+                            <tr>
+                                <td>總計：</td>
+                                <td></td>
+                                <td></td>
+                                <td>$24.90</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                <hr class="mt-5">
-                <div class="list-detail ms-5 d-flex align-items-center">付款方式</div>
-                <div class="pay-list">
-                    <div class="pay-option"><input class="me-2 mb-4" type="radio" name="pay">信用卡付款</div>
-                    <hr class="mb-3" style="width: 90%;">
-                    <div class="pay-option"><input class="me-2 mb-4" type="radio" name="pay">網路 ATM</div>
-                    <hr class="mb-3" style="width: 90%;">
-                    <div class="pay-option"><input class="me-2 mb-4" type="radio" name="pay">超商代碼</div>
+                <hr class="mb-4">
+                <div class="next-step d-flex justify-content-between">
+                    <a href="/shopping1" style="color:white;">
+                        <button class="btn btn-primary" style="width: 130px;height: 50px;">上一步</button>
+                    </a>
+                    <button class="btn btn-primary" type="submit" style="width: 130px;height: 50px;">下一步</button>
                 </div>
-                <hr class="mt-4">
-                <div class="list-detail ms-5 d-flex align-items-center">運送方式</div>
-                <div class="fee-list">
-                    <div class="fee-option"><input class="me-2 mb-4" type="radio" name="fee">黑貓宅配</div>
-                    <hr class="mb-3" style="width: 90%;">
-                    <div class="fee-option"><input class="me-2 mb-4" type="radio" name="fee">超商店到店</div>
-                </div>
-                <hr class="mt-4">
-                <div class="total-box">
-                    <table>
-                        <tr>
-                            <td>數量：</td>
-                            <td></td>
-                            <td></td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>小計：</td>
-                            <td></td>
-                            <td></td>
-                            <td >$24.90</td>
-                        </tr>
-                        <tr>
-                            <td>運費：</td>
-                            <td></td>
-                            <td></td>
-                            <td>$24.90</td>
-                        </tr>
-                        <tr>
-                            <td>總計：</td>
-                            <td></td>
-                            <td></td>
-                            <td>$24.90</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <hr class="mb-4">
-            <div class="next-step d-flex justify-content-between">
-                <a href="/shopping1" style="color:white;"><button class="btn btn-primary" style="width: 130px;height: 50px;">上一步</button></a>
-                <a href="/shopping3" style="color:white; "><button class="btn btn-primary" style="width: 130px;height: 50px;">下一步</button></a>
-
-            </div>
+            </form>
         </section>
 
     @endsection

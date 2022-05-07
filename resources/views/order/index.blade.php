@@ -1,6 +1,6 @@
 @extends('layouts.app')
     @section('pageTitle')
-        產品管理
+        訂單管理
     @endsection
 
     @section('css')
@@ -109,7 +109,7 @@
                 padding-top: 50px;
                 padding-bottom: 50px;
             }
-            #good{
+            #account{
                 width: 1030px;
                 /* height: 1000px; */
                 margin: 0 auto;
@@ -118,16 +118,16 @@
                 border-radius: 10px;
 
             }
-            #good a:hover{
+            #account a:hover{
                 text-decoration: underline
             }
             @media (max-width:1039px) {
-                #good{
+                #account{
                     width: 100%;
                 }
             }
             @media (max-width:785px) {
-                #good{
+                #account{
                     width: 460px;
                 }
                 .steps{
@@ -135,11 +135,11 @@
                 }
             }
             @media (max-width:460px) {
-                #good{
+                #account{
                     width: 100%;
                 }
             }
-            #good .container_xxl{
+            #account .container_xxl{
                 /* background-color: rgb(213, 232, 255); */
                 /* height: 850px; */
                 position: relative;
@@ -255,76 +255,57 @@
             .func.col-md-4.d-flex.flex-column.align-items-center > a:hover{
                 text-decoration: underline
             }
+
         </style>
     @endsection
 
 
     @section('main')
 
-        <section id="good" class="pt-4 pb-4" >
+        <section id="account" class="pt-4 pb-4" >
             <div class="container_xxl ps-3 pe-3 mt-1 ">
                 <div class="col-md-12 d-flex justify-content-between">
-                    <h2 class="">商品管理</h2>
-                    <a href="/good/create" class="btn btn-success d-flex align-items-center justify-content-center" style="text-decoration: none; width:100px;">新增產品</a>
+                    <h2 class="">訂單管理</h2>
+                    {{-- <a href="/account/create" class="btn btn-success d-flex align-items-center justify-content-center" style="text-decoration: none; width:120px;">新增帳號</a> --}}
                 </div>
-                <div class="col-md-12 mt-3 mb-5">
-                    <div>
-                        <label for="num">show</label>
-                        <select id="num" name="num">
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                        </select>
-                        <label for="num"> enties</label>
-                    </div>
-                </div>
-                <div>
-                    @foreach ($good as $goods)
-                        <hr>
-                        <div id="each-good-information" class="col-md-12 d-flex mt-2 mb-2">
-                            <div class="col-md-6">
-                                <img src="{{$goods->img_path}}" alt="" style="width: 100% ;">
-                            </div>
-                            <div class="col-md-6 d-flex flex-column justify-content-between p-4">
-                                <table>
-                                    <tr style="border-bottom: 1px solid gray">
-                                        <td class="h6"  style="width:70px;" >品名：</td>
-                                        <td class="h6">{{$goods->product_name}}</td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid gray">
-                                        <td class="h6" style="width:70px; vertical-align:top;padding-top:3px;">介紹：</td>
-                                        <td>{{$goods->product_description}}</td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid gray">
-                                        <td class="h6" style="width:70px;">價格：</td>
-                                        <td>NT${{$goods->product_price}}</td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid gray">
-                                        <td class="h6" style="width:70px;">數量：</td>
-                                        <td>{{$goods->product_amount}}</td>
-                                    </tr>
-                                </table>
-
-                                <div class="d-flex align-self-center">
-                                    <button class="btn btn-secondary" onclick="location.href='/good/edit/{{$goods->id}}'">編輯</button>
-                                    <button class="btn btn-danger ms-3" onclick="document.querySelector('#deleteForm{{$goods->id}}').submit();">刪除</button>
-                                    <form action="/good/delete/{{$goods->id}}" method="post" hidden id="deleteForm{{$goods->id}}">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                <div class="col-md-12 d-flex justify-content-center ps-3 pe-3">
+                    <table class="col-md-12">
+                        <thead style="height:70px ;border-bottom:2px #cccccc solid;">
+                            <tr>
+                                <th class="h5">訂單編號</th>
+                                <th class="h5">訂購者姓名</th>
+                                <th class="h5">信箱</th>
+                                <th class="h5">備註</th>
+                                <th class="h5">功能</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($order as $item)
+                                <tr style="height:60px; border-bottom:1px solid gray;">
+                                    <td>#{{$item->id}}</td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->email}}</td>
+                                    <td>{{$item->ps}}</td>
+                                    <td>
+                                        <div class="d-flex align-self-center">
+                                            <button class="btn btn-secondary" onclick="location.href='/order/edit/{{$item->id}}'">編輯</button>
+                                            <button class="btn btn-danger ms-3" onclick="document.querySelector('#deleteForm{{$item->id}}').submit();">刪除</button>
+                                            <form action="/order/delete/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
     @endsection
     @section('js')
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-        <script>
-            function delete_banner($id){
-                document.querySelector('#deleteForm'+$id).submit();
-            }
-        </script>
+
+
     @endsection

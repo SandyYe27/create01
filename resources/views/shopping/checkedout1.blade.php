@@ -1,7 +1,7 @@
 @extends('template.template')
 
     @section('pageTitle')
-        Checkedout1
+        訂單明細
     @endsection
 
     @section('css')
@@ -82,10 +82,8 @@
                 }
             }
             nav .ham-div{
-                /* height: 250px; */
                 display: none;
                 background-color: rgb(255, 255, 255);
-                /* position: absolute; */
                 top: 80px;
                 z-index: 1;
                 margin-left: -10px;
@@ -116,6 +114,7 @@
                 background-color: rgb(241, 242, 245);
                 /* 中間主區塊色 */
                 border-radius: 10px;
+                position: relative;
             }
             @media (max-width:1039px) {
                 #shopping-step01{
@@ -136,9 +135,7 @@
                 }
             }
             #shopping-step01 .container_xxl{
-                /* background-color: rgb(213, 232, 255); */
-                height: 850px;
-                position: relative;
+                /* height: 850px; */
 
             }
             .buy-progress{
@@ -207,25 +204,19 @@
             }
             .list-detail{
                 font-size: 25px;
-                /* background-color: aquamarine; */
                 height: 80px;
             }
             .dishes-list-box{
                 width: 90%;
                 height: 120px;
-                /* background-color: rgb(41, 156, 118); */
             }
-            .meal-detail{
-                /* background-color: burlywood; */
-                height: 60px;
-            }
+
             .dishes-name-num > div{
-                height: 30px;
                 margin-left: 10px;
+
             }
             .dishes-name-num > div:first-of-type{
                 font-weight: 600;
-
             }
             .dishes-name-num > div:last-of-type{
                 font-size: small;
@@ -233,7 +224,6 @@
             }
 
             .how-many-how-much{
-                /* background-color: blueviolet; */
                 height: 60px;
             }
             input{
@@ -250,24 +240,7 @@
                 width: 90%;
                 margin: 0 auto;
             }
-            table{
-                /* width: 300px; */
-                position: absolute;
-                top: 650px;
-                right: 30px;
-            }
-            td{
-                text-align: end;
-                width: 50px;
-            }
-            tr > td:first-of-type{
-                color: gray;
-                font-size: 13px;
-            }
-            tr > td:last-of-type{
-                font-weight: 600;
-                font-size: 20px;
-            }
+
             .next-step{
                 width: 90%;
                 margin: 0 auto;
@@ -373,139 +346,76 @@
                 justify-content: center;
                 }
             }
+
+
         </style>
     @endsection
 
     @section('main')
-        <section id="shopping-step01" class="pt-3 pb-3">
-            <div class="container_xxl">
-                <div class="buy-progress">
-                    <h2 class="ms-5">購物車</h2>
-                    <div class="steps">
-                        <div class="step green" data-text="確認購物車">1</div>
-                        <div class="buy-progress-bar progress-25"></div>
-                        <div class="step" data-text=" 付款與運送方式">2</div>
-                        <div class="buy-progress-bar"></div>
-                        <div class="step" data-text=" 填寫資料">3</div>
-                        <div class="buy-progress-bar"></div>
-                        <div class="step" data-text=" 完成訂購">4</div>
+        <section id="shopping-step01" class="pt-3 pb-5">
+            <form action="/shopping2" method="POST">
+                @csrf
+                <div class="container_xxl">
+                    <div class="buy-progress">
+                        <h2 class="ms-5">購物車</h2>
+                        <div class="steps">
+                            <div class="step green" data-text="確認購物車">1</div>
+                            <div class="buy-progress-bar progress-25"></div>
+                            <div class="step" data-text=" 付款與運送方式">2</div>
+                            <div class="buy-progress-bar"></div>
+                            <div class="step" data-text=" 填寫資料">3</div>
+                            <div class="buy-progress-bar"></div>
+                            <div class="step" data-text=" 完成訂購">4</div>
+                        </div>
                     </div>
+                    <hr style="width: 90%; margin: 0 auto; margin-top: 40px; color: rgb(165, 165, 165);">
+                    <div class="list-detail ms-5 d-flex align-items-center">訂單明細</div>
+
+                    <div>
+                        {{-- @foreach ($陣列 as $item) --}}
+                        @foreach ($shopping as $item)
+                        <div class="dishes-list-box d-flex align-items-center ms-5 justify-content-between">
+                            <div class="d-flex meal-detail mt-3">
+                                <img src="{{ $item->product->img_path }}" alt="" style="width:60px; height: 60px; border-radius: 50%;">
+                                <div class="dishes-name-num">
+                                    <div>
+                                        <p>{{ $item->product->product_name }}</p>
+                                    </div>
+                                    <div>
+                                        <p>#{{ $item->product->id }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex how-many-how-much align-items-center">
+                                <div class="d-flex" style="font-weight: 600;width: 100px;">
+                                    <div>-</div>
+                                    &nbsp;
+                                    <div><input type="number" name="qty[]" value="{{$item->qty}}"></div>
+                                    &nbsp;
+                                    <div>+</div>
+                                </div>
+                                <div style="width:60px;">NT${{$item->qty * $item->product->product_price}}</div>
+                            </div>
+                        </div>
+                        <hr>
+                        @endforeach
+                    </div>
+
+                    <div class="mt-4 mb-4" style="width:250px; margin-left:auto; color:rgb(71, 71, 71);">
+                        <div class="h6">商品數量：{{ count($shopping) }}</div>
+                        <div class="h6">小計：NT${{$sub_total}}</div>
+                        <div class="h6">運費：NT$100</div>
+                        <div class="h6">總計：NT${{$sub_total+100}}</div>
+                    </div>
+                    <hr class="mb-4">
+                    {{-- <hr style="width: 90%; margin: 0 auto; margin-top: 530px;"> --}}
                 </div>
-                <hr style="width: 90%; margin: 0 auto; margin-top: 40px; color: rgb(165, 165, 165);">
-                <div class="list-detail ms-5 d-flex align-items-center">訂單明細</div>
-                <div class="buy-list">
-                    <div class="dishes-list-box d-flex align-items-center ms-5 justify-content-between">
-
-                        <div class="d-flex meal-detail">
-                            <img src="https://images.immediate.co.uk/production/volatile/sites/30/2013/05/Puttanesca-fd5810c.jpg" alt="" style="width:60px; height: 60px; border-radius: 50%;">
-                            <div class="dishes-name-num">
-                                <div style="padding-top: 9px;">
-                                    <p>Chicken momo</p>
-                                </div>
-                                <div>
-                                    <p>#41551</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex how-many-how-much align-items-center">
-                            <div class="d-flex" style="font-weight: 600;width: 100px;">
-                                <div>-</div>
-                                &nbsp;
-                                <div><input type="number" placeholder="1" class=""></div>
-                                &nbsp;
-                                <div>+</div>
-                            </div>
-                            <div style="width:60px;">NT$10.50</div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="dishes-list-box d-flex align-items-center ms-5 justify-content-between">
-
-                        <div class="d-flex meal-detail">
-                            <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/tgi-fridays-potato-skins-1576689702.jpg?crop=1xw:1xh;center,top&resize=768:*" alt="" style="width:60px; height: 60px; border-radius: 50%;">
-                            <div class="dishes-name-num">
-                                <div style="padding-top: 9px;">
-                                    <p>Spicy Mexican potatoes</p>
-                                </div>
-                                <div>
-                                    <p>#66999</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex how-many-how-much align-items-center">
-                            <div class="d-flex" style="font-weight: 600;width: 100px;">
-                                <div>-</div>
-                                &nbsp;
-                                <div><input type="number" placeholder="1" class=""></div>
-                                &nbsp;
-                                <div>+</div>
-                            </div>
-                            <div style="width:60px;">NT$10.50</div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="dishes-list-box d-flex align-items-center ms-5 justify-content-between">
-                        <div class="d-flex meal-detail">
-                            <img src="https://images.immediate.co.uk/production/volatile/sites/30/2017/06/healthy-nicoise-09b6cd9.jpg?quality=90&webp=true&resize=600,545" alt="" style="width:60px; height: 60px; border-radius: 50%;">
-                            <div class="dishes-name-num">
-                                <div style="padding-top: 9px;">
-                                    <p>Breakfast</p>
-                                </div>
-                                <div>
-                                    <p>#86577</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex how-many-how-much align-items-center">
-                            <div class="d-flex" style="font-weight: 600;width: 100px;">
-                                <div>-</div>
-                                &nbsp;
-                                <div><input type="number" placeholder="1" class=""></div>
-                                &nbsp;
-                                <div>+</div>
-                            </div>
-                            <div style="width:60px;">NT$10.50</div>
-                        </div>
-                    </div>
-                    <hr>
+                <div class="col-md-10 d-flex justify-content-between" style="margin: 0 auto;">
+                    <a href="/" style="color: black"><div class="h6 mt-3"> ← 返回購物</div></a>
+                    <button class="btn btn-primary" type="submit" style="width: 130px;height: 50px;">下一步</button>
                 </div>
-                <div class="total-box">
-                    <table>
-                        <tr>
-                            <td>數量：</td>
-                            <td></td>
-                            <td></td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>小計：</td>
-                            <td></td>
-                            <td></td>
-                            <td >$24.90</td>
-                        </tr>
-                        <tr>
-                            <td>運費：</td>
-                            <td></td>
-                            <td></td>
-                            <td>$24.90</td>
-                        </tr>
-                        <tr>
-                            <td>總計：</td>
-                            <td></td>
-                            <td></td>
-                            <td>$24.90</td>
-                        </tr>
-                    </table>
-                </div>
-                <hr style="width: 90%; margin: 0 auto; margin-top: 530px;">
-            </div>
-            <div class="next-step d-flex justify-content-between">
-                <a href="/" style="color: black"><div style="font-weight: 600;"> ← 返回購物</div></a>
-                <a href="/shopping2" style="color:white; "><button class="btn btn-primary" style="width: 130px;height: 50px;">下一步</button></a>
-            </div>
+            </form>
         </section>
     @endsection
 

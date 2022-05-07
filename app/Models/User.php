@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Modles\ShoppingCart;
+use App\Modles\Order;
+
 
 class User extends Authenticatable
 {
@@ -51,4 +54,8 @@ class User extends Authenticatable
         return $this->hasMany(ShoppingCart::class, 'user_id','id');
     }
 
+    public function order(){
+        //一個使用者可以有很多筆訂單
+        return $this->hasMany(Order::class, 'user_id','id');
+    }
 }
