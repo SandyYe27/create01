@@ -150,6 +150,7 @@ class Controller extends BaseController
 
 
     }
+    
     public function update_comment($id, Request $request){
         //方法一，DB操作
         // DB::table('comments')->where('id',$id)->update([

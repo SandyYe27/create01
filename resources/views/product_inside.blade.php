@@ -5,7 +5,6 @@
 
     @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
@@ -336,7 +335,11 @@
 
                         <div class="r-button align-self-end">
                             <input type="number" id="product_id" value="{{$product->id}}" hidden>
-                            <a class="btn btn-danger" role="button" id="add_product" style="height:45px; display:flex; align-items:center;">加入購物車</a>
+                            <a class="btn btn-danger" role="button" id="add_product" style="height:45px; display:flex; align-items:center;">
+                                <i class="bi bi-cart3"></i>
+                                &nbsp;
+                                <span>加入購物車</span>
+                            </a>
                         </div>
                     </div>
                 </div>

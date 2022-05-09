@@ -40,8 +40,7 @@ class ShoppingCart extends Model
     //一個購物車有一個使用者 一對一
     public function user(){
         //一定屬於某一個使用者
-        //belongsTo /belongsToMany  格式（對照的Model::class,'自己的欄位','對方的欄位'）
+        //belongsTo 格式（對照的Model::class,'自己的欄位','對方的欄位'）
         return $this->belongsTo(User::class,'user_id','id');
-        //這編寫belongsTo，對方就會寫hasMany
     }
 }

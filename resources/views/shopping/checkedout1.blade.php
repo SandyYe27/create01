@@ -379,10 +379,10 @@
                                 <img src="{{ $item->product->img_path }}" alt="" style="width:60px; height: 60px; border-radius: 50%;">
                                 <div class="dishes-name-num">
                                     <div>
-                                        <p>{{ $item->product->product_name }}</p>
+                                        <p>{{$item->product->product_name}}</p>
                                     </div>
                                     <div>
-                                        <p>#{{ $item->product->id }}</p>
+                                        <p>#{{$item->product->id}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -403,13 +403,12 @@
                     </div>
 
                     <div class="mt-4 mb-4" style="width:250px; margin-left:auto; color:rgb(71, 71, 71);">
-                        <div class="h6">商品數量：{{ count($shopping) }}</div>
+                        <div class="h6">商品數量：{{count($shopping)}}</div>
                         <div class="h6">小計：NT${{$sub_total}}</div>
                         <div class="h6">運費：NT$100</div>
                         <div class="h6">總計：NT${{$sub_total+100}}</div>
                     </div>
                     <hr class="mb-4">
-                    {{-- <hr style="width: 90%; margin: 0 auto; margin-top: 530px;"> --}}
                 </div>
                 <div class="col-md-10 d-flex justify-content-between" style="margin: 0 auto;">
                     <a href="/" style="color: black"><div class="h6 mt-3"> ← 返回購物</div></a>

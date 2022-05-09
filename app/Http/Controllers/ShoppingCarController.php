@@ -18,6 +18,7 @@ class ShoppingCarController extends Controller
         $user = Auth::id(); //等於Auth::user()->id;
         $shopping = ShoppingCart::where('user_id',$user)->get();
         //where('user_id','=',$user)三個參數，比較左右兩邊是否相同時，中間的'='可以省略，所以也可以寫成where('user_id',$user)
+
         $sub_total = 0;
         foreach ($shopping as $value) {
             $sub_total += $value->qty * $value->product->product_price;
@@ -49,7 +50,8 @@ class ShoppingCarController extends Controller
             'amount' => $request->qty,
         ]);
 
-        //session的使用方法，將想要帶到下一頁的資料寫進去，資料會存在伺服器的某個暫存檔案中，
+        // session >>> 要帶到下一頁的資料寫進去，資料會存在伺服器的某個暫存檔案中
+        // session的使用方法
         // $plate = ['aaa-1234','bbb-1234','ccc1234'];
         // session([
         //     //key and value(鍵 與 值)
@@ -71,7 +73,7 @@ class ShoppingCarController extends Controller
         //抓特定想要的資料
         // dd( session()->get('myname'));
 
-        // dd(session()->get('amount'));確定amount有到第三步驟
+        // dd(session()->get('amount'));確定amount有到第3步驟
 
         session([
             //key and value(鍵 與 值)
@@ -85,8 +87,9 @@ class ShoppingCarController extends Controller
 
     public function step04(Request $request){
 
-        dump(session()->all());
-        dd($request->all());
+        dump( session()->all() );
+
+        dd( $request->all() );
 
         return view('.shopping.checkedout4');
     }

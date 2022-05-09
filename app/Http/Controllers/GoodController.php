@@ -136,5 +136,5 @@ class GoodController extends Controller
 
     }
 
-   
+
 }

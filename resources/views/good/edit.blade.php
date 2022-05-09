@@ -5,7 +5,6 @@
 
     @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
         <style>
@@ -416,13 +415,6 @@
                             </div>
                     </form>
 
-                    {{-- @foreach ($good->imgs as $item)
-                        <form action="/good/delete_img/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
-                            @method('DELETE')
-                            @csrf
-                        </form>
-                    @endforeach --}}
-
                 </div>
             </div>
         </section>
@@ -441,7 +433,7 @@
                     method:"POST",
                     body: formData,
                 }).then(function(response){
-                    //成功從資料庫刪除資料後，將自己的HTML元素消除
+                    //成功從資料庫刪除資料後，將自己的HTML元素也刪除
                    let element = document.querySelector('#sup_img'+id);
                    element.parentNode.removeChild(element);//從父層刪裡面的元素
                 });

@@ -5,7 +5,6 @@
 
     @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
         <style>
@@ -359,14 +358,12 @@
         <section id="account" class="p-3" >
             <div class="container_xxl p-3">
                 <div class="col-md-12 d-flex justify-content-between mb-3">
-                    <h2 class="">編輯訂單
-                    </h2>
+                    <h2 class="">編輯訂單</h2>
                 </div>
                 <div class="col-md-12 ps-5 pe-5">
                     {{-- enctype="multipart/form-data" --}}
                     <form class="form row g-3" action="/order/update/{{$order->id}}" method="post" enctype="multipart/form-data">
                         @csrf
-
                             {{-- 訂單編號 --}}
                             <label class="h6 mb-3 " for="order_id">訂單編號
                                 <input class="col-md-12" type="text" name="order_id" id="order_id" value="{{$order->id}}">
@@ -387,10 +384,10 @@
                                 <input class="col-md-12" readonly type="text" id="user_mail" value="{{$order->email}}">
                             </label>
 
+                            {{-- 會員電話 --}}
                             <label class="h6 mb-3 " for="user_phone">電話
                                 <input class="col-md-12" readonly type="text" id="user_phone" value="{{$order->phone}}">
                             </label>
-
 
                             {{-- 信箱 --}}
                             <label class="h6 mb-3 " for="ps">備註
@@ -403,7 +400,6 @@
                                 <input type="button" onclick="location.href='/account' " value="取消" style="border:1px solid gray ;width: 130px;height: 50px;">
                                 <input type="reset" style="border:1px solid gray ;width: 130px;height: 50px;">
                                 <input class="btn btn-success align-self-center" type="submit" style="width: 130px;height: 50px;" value="儲存">
-
                             </div>
                     </form>
                 </div>

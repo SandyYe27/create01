@@ -30,11 +30,11 @@ class OrderDetail extends Model
      */
     protected $fillable = ['product_id', 'qty', 'price', 'order_id', 'created_at', 'updated_at'];
 
-    public function order(){
+    public function order(){               //'自己的','對方的'
         return $this->belongsTo(Order::class,'order_id','id');
     }
 
-    public function product(){
+    public function product(){            //'對方的','自己的'
         return $this->hasOne(Good::class,'id','product_id')
     }
 
