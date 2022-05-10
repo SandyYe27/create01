@@ -1,7 +1,7 @@
 @extends('template.template')
 
     @section('pageTitle')
-        留言板
+        最新消息
     @endsection
 
     @section('css')
@@ -357,55 +357,22 @@
     @section('main')
 
         <section id="shopping-step03" class="pt-3 pb-3">
-                <h2 class="mt-5 ms-5">留言板</h2>
-                <h5 class="mt-1 ms-5">最新5筆留言</h5>
-                <div class="ms-5 me-5 mt-4">
-                    {{-- 資料要傳到後端
-                    表單用form包起來，input一定要有name --}}
-                    <form class="form row g-3" action="/comment/save" method="GET"> {{--需和route對應--}}
-                        @foreach ($comments as $comment)
-                            <div class="col-md-12 p-3" style="background-color: rgb(208, 208, 208); border-radius:15px;">
-                                <div class="d-flex justify-content-between ">
-                                    <div class="h5">{{$comment->title}}</div>
-                                    <div>{{substr($comment->created_at,0,16)}}</div>
-                                </div>
-                                <div>{{$comment->name}}</div>
-                                <div>{{$comment->context}}</div>
-                                <div>
-                                    @auth
-                                        @if (Auth::user()->power == 1)
-                                            <a href="/comment/edit/{{$comment->id}}">編輯</a>
-                                            &nbsp;
-                                            <a href="/comment/delete/{{$comment->id}}" style="color: red;">刪除</a>
-                                        @endif
-                                    @endauth
-                                </div>
+            <h2 class="mt-5 ms-5">最新消息</h2>
+            <div class="ms-5 me-5 mt-4">
+                @foreach ($news as $item)
+                    <a href="/news_detail/{{$item->id}}" style="color: rgb(32, 32, 32);">
+                        <div class="col-md-12 p-3 mb-3" style="background-color: rgb(208, 208, 208); border-radius:15px;">
+                            <div class="d-flex justify-content-between ">
+                                <div class="h5">{{$item->title}}</div>
+                                <div>更新時間{{substr($item->updated_at,0,16)}}</div>
                             </div>
-                        @endforeach
-                        <hr class="mt-5 mb-3">
-                        <h3>新增留言</h3>
-                        <div class="col-md-6">
-                            <label for="inputex1" class="form-label">標題</label>
-                            <input type="text" class="form-control" id="inputex1" name="title" placeholder="標題">
+                            <div>{{$item->author}}</div>
                         </div>
-
-                        <div class="col-md-6">
-                          <label for="inputex2" class="form-label">姓名</label>
-                          <input type="text" class="form-control" id="inputex2" name="name" placeholder="姓名">
-                        </div>
-
-                        <div class="col-md-12">
-                            <label for="inputex3" class="form-label">留言</label>
-                            <input type="text" class="form-control" id="inputex3" name="content" placeholder="留言區" style="height: 200px" >
-                        </div>
-                        <div class="col-md-12 d-flex justify-content-between mb-3">
-                            <input type="reset"style="width: 130px;height: 50px;">
-                            <input type="submit"style="width: 130px;height: 50px;">
-                        </div>
-
-                    </form>
-
-                </div>
-
+                    </a>
+                @endforeach
+            </div>
+            <div class="col-md-12 d-flex justify-content-center mt-5 mb-5">
+                <input type="button" onclick="location.href='/' " value="返回首頁" style="border:1px solid gray ;width: 130px;height: 50px;">
+            </div>
         </section>
     @endsection

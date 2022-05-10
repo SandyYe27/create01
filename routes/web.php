@@ -26,6 +26,18 @@ use App\Http\Controllers\OrderController;
 //首頁
 Route::get('/', [Controller::class, 'index']);
 
+//測試
+Route::get('/test', function(){
+
+    $info = ['owner_number'=> 'A123456','owner_name' => 'John','car_color' => 'red'];
+
+    foreach ($info as $key => $value) {
+        dump($key.':'.$value);
+    }
+
+});
+
+
 
 //後台首頁
 Route::get('/dashboard', function () {
@@ -37,13 +49,12 @@ require __DIR__.'/auth.php';
 
 //商品詳情
 Route::get('/product_detail/{id}', [Controller::class, 'product']); //商品內頁
+
 //接受加入購物車的請求
 Route::post('/add_to_cart', [Controller::class, 'add_cart']);  //加入購物車
 
-
-
 //檢視訂單列表
-Route::get('/order_list', [Controller::class, 'order_list']);
+Route::middleware(['auth'])->get('/order_list', [Controller::class, 'order_list']);
 
 //訂單相關
 Route::prefix('/order')->middleware(['auth','power'])->group(function(){
@@ -53,14 +64,12 @@ Route::prefix('/order')->middleware(['auth','power'])->group(function(){
 
 });
 
-
 //留言相關
 Route::get('/comment', [Controller::class, 'comment']);
 Route::get('/comment/save', [Controller::class, 'save_comment']);
 Route::get('/comment/delete/{id}', [Controller::class, 'delete_comment']);
 Route::get('/comment/edit/{id}', [Controller::class, 'edit_comment']);
 Route::get('/comment/update/{id}', [Controller::class, 'update_comment']);
-
 
 //購物車相關
 Route::middleware(['auth'])->group(function(){
@@ -115,3 +124,20 @@ Route::prefix('/account')->middleware(['auth','power'])->group(function(){
     Route::delete('/delete/{id}', [AccountController::class, 'destroy']);//刪除
 
 });
+
+//檢視文章
+Route::get('/news_list', [Controller::class, 'news_list']);//文章列表
+Route::get('/news_detail/{id}', [Controller::class, 'news_detail']);//各文章內頁
+
+//文章管理相關
+Route::prefix('/news')->middleware(['auth','power'])->group(function(){
+
+    Route::get('/', [NewsController::class, 'index']);//總表、列表頁
+    Route::get('/create', [NewsController::class, 'create']);//新增頁
+    Route::post('/store', [NewsController::class, 'store']);//儲存功能//不能用get
+    Route::get('/edit/{id}', [NewsController::class, 'edit']);//編輯頁
+    Route::post('/update/{id}', [NewsController::class, 'update']);//更新功能
+    Route::delete('/delete/{id}', [NewsController::class, 'destroy']);//刪除
+
+});
+

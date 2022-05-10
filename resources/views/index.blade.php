@@ -239,20 +239,25 @@
                         <div class="card mb-3 d-flex flex-column align-items-center " style=" border: none;">
                             <div class="d-flex align-items-center justify-content-center h3" style="width: 80px; height: 80px; border-radius: 50px; background-color: rgb(222, 228, 255); ">
                                 {{-- <i class="fa-solid fa-scissors" style="color: rgb(92, 106, 255);"></i> --}}
-                                <img src="{{$item->img}}" style="width:100px;" alt="">
+                                <img src="{{$item->img}}" style="width: 100%;" alt="">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center">{{$item->title}}</h5>
                                 <p class="card-text text-center">{{$item->content}}</p>
                             </div>
-                            <a href="#" class="btn" style="color: rgb(92, 106, 255);">Learn More →</a>
+                            <a href="/news_detail/{{$item->id}}" class="btn" style="color: rgb(92, 106, 255);">Learn More →</a>
                         </div>
                     @endforeach
 
                 </div>
                 <div class="row">
                     <div class="section-2-bottom d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-primary" style="width: 110px; height: 45px; background-color:rgb(114, 98, 255); color: #ffffff;">Button</button>
+                        <a href="/news_list" >
+                            <button type="button" class="btn btn-primary" style="width: 110px; height: 45px; background-color:rgb(114, 98, 255); color: #ffffff; border:none;">
+                                所有消息
+                            </button>
+                        </a>
+
                     </div>
                 </div>
             </div>

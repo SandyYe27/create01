@@ -1,18 +1,19 @@
-@extends('template.template')
-
+@extends('layouts.app')
     @section('pageTitle')
-        留言板
+        文章管理
     @endsection
 
     @section('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <style>
             a{
                 text-decoration: none;
-
             }
             nav{
                 /* background-color: aquamarine; */
-                padding: 10px 120px;
+                /* padding: 10px 120px; */
                 /* width: 100%; */
                 /* position: relative; */
             }
@@ -58,13 +59,13 @@
                 }
             }
 
-            label{
+            nav label{
                 width: 40px;
                 height: 40px;
                 display: none;
 
             }
-            label > div{
+            nav label > div{
                 width: 20px;
                 height: 20px;
                 margin-top: 10px;
@@ -73,11 +74,11 @@
                 background-size: cover;
                 background-color: aquamarine;
             }
-            label:hover{
+            nav label:hover{
                 cursor: pointer;
             }
             @media (max-width:768px) {
-                label{
+                nav label{
                     display: block;
                 }
             }
@@ -108,7 +109,7 @@
                 padding-top: 50px;
                 padding-bottom: 50px;
             }
-            #shopping-step03{
+            #account{
                 width: 1030px;
                 /* height: 1000px; */
                 margin: 0 auto;
@@ -117,13 +118,16 @@
                 border-radius: 10px;
 
             }
+            #account a:hover{
+                text-decoration: underline
+            }
             @media (max-width:1039px) {
-                #shopping-step03{
+                #account{
                     width: 100%;
                 }
             }
             @media (max-width:785px) {
-                #shopping-step03{
+                #account{
                     width: 460px;
                 }
                 .steps{
@@ -131,127 +135,25 @@
                 }
             }
             @media (max-width:460px) {
-                #shopping-step03{
+                #account{
                     width: 100%;
                 }
             }
-            #shopping-step03 .container_xxl{
+            #account .container_xxl{
                 /* background-color: rgb(213, 232, 255); */
                 /* height: 850px; */
                 position: relative;
 
             }
-            .buy-progress{
-                /* background-color: rgb(120, 189, 249); */
-                padding-top: 20px;
-
-            }
-            #shopping-step03 .steps{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 70px;
-            }
-
-            #shopping-step03 .steps .step{
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background-color: rgb(255, 255, 255);
-                line-height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-            }
-
-            #shopping-step03 .steps .step::before{
-                /* content: '確認購物車'; */
-                content: attr(data-text);
-                position: absolute;
-                bottom: -40px;
-                text-align: center;
-                word-break: keep-all;
-                color: black;
-
-            }
-
-            #shopping-step03 .steps .buy-progress-bar{
-                /* width: 180px; */
-                width: 17%;
-                height: 8px;
-                border-radius: 5px;
-                background-color: rgb(221, 221, 221);
-                margin: 0px 8px;
-            }
-
-            @media (max-width:785px) {
-                #shopping-step03 .steps .buy-progress-bar{
-                    width: 10%;
+            @media (max-width:785px){
+                #each-good-information{
+                    flex-direction: column;
                 }
             }
-            #shopping-step03 .steps .green{
-                background-color: rgb(15, 190, 105);
-                color: white;
-            }
-            #shopping-step03 .steps .progress-25::before{
-                content: '';
-                width: 100%;
-                height: 100%;
-                background-color: rgb(54, 224, 153);
-                display: block;
-                border-radius: 5px;
-            }
-            #shopping-step03 .steps .progress-50::before{
-                content: '';
-                width: 100%;
-                height: 100%;
-                background-color: rgb(54, 224, 153);
-                display: block;
-                border-radius: 5px;
-            }
-            #shopping-step03 .steps .progress-75::before{
-                content: '';
-                width: 35%;
-                height: 100%;
-                background-color: rgb(54, 224, 153);
-                display: block;
-                border-radius: 5px;
-            }
-            hr{
-                color:rgb(165, 165, 165);
-                width: 90%;
-                margin: 0 auto;
-            }
-            main p{
-                font-size: 20px;
-            }
 
 
 
-            table{
-                /* width: 300px; */
-                position: absolute;
-                right: 30px;
-                margin-top: 20px;
-            }
-            td{
-                text-align: end;
-                width: 50px;
-            }
-            tr > td:first-of-type{
-                color: gray;
-                font-size: 13px;
-            }
-            tr > td:last-of-type{
-                font-weight: 600;
-                font-size: 20px;
-            }
-            .next-step{
-                width: 90%;
-                margin: 0 auto;
-                margin-bottom: 30px;
-            }
+
             .footer-top{
                 background-color: rgb(255, 255, 255);
                 padding-top: 50px;
@@ -315,7 +217,7 @@
                 width: calc((100% - 100px) / 2);
                 }
             }
-            @media (max-width:783px) {
+            @media (max-width:785px) {
                 .list-unstyled > div{
                 width: 100%;
                 text-align: center;
@@ -350,62 +252,60 @@
                 justify-content: center;
                 }
             }
+            .func.col-md-4.d-flex.flex-column.align-items-center > a:hover{
+                text-decoration: underline
+            }
+
         </style>
     @endsection
 
 
     @section('main')
 
-        <section id="shopping-step03" class="pt-3 pb-3">
-                <h2 class="mt-5 ms-5">留言板</h2>
-                <h5 class="mt-1 ms-5">最新5筆留言</h5>
-                <div class="ms-5 me-5 mt-4">
-                    {{-- 資料要傳到後端
-                    表單用form包起來，input一定要有name --}}
-                    <form class="form row g-3" action="/comment/save" method="GET"> {{--需和route對應--}}
-                        @foreach ($comments as $comment)
-                            <div class="col-md-12 p-3" style="background-color: rgb(208, 208, 208); border-radius:15px;">
-                                <div class="d-flex justify-content-between ">
-                                    <div class="h5">{{$comment->title}}</div>
-                                    <div>{{substr($comment->created_at,0,16)}}</div>
-                                </div>
-                                <div>{{$comment->name}}</div>
-                                <div>{{$comment->context}}</div>
-                                <div>
-                                    @auth
-                                        @if (Auth::user()->power == 1)
-                                            <a href="/comment/edit/{{$comment->id}}">編輯</a>
-                                            &nbsp;
-                                            <a href="/comment/delete/{{$comment->id}}" style="color: red;">刪除</a>
-                                        @endif
-                                    @endauth
-                                </div>
-                            </div>
-                        @endforeach
-                        <hr class="mt-5 mb-3">
-                        <h3>新增留言</h3>
-                        <div class="col-md-6">
-                            <label for="inputex1" class="form-label">標題</label>
-                            <input type="text" class="form-control" id="inputex1" name="title" placeholder="標題">
-                        </div>
-
-                        <div class="col-md-6">
-                          <label for="inputex2" class="form-label">姓名</label>
-                          <input type="text" class="form-control" id="inputex2" name="name" placeholder="姓名">
-                        </div>
-
-                        <div class="col-md-12">
-                            <label for="inputex3" class="form-label">留言</label>
-                            <input type="text" class="form-control" id="inputex3" name="content" placeholder="留言區" style="height: 200px" >
-                        </div>
-                        <div class="col-md-12 d-flex justify-content-between mb-3">
-                            <input type="reset"style="width: 130px;height: 50px;">
-                            <input type="submit"style="width: 130px;height: 50px;">
-                        </div>
-
-                    </form>
-
+        <section id="account" class="pt-4 pb-4" >
+            <div class="container_xxl ps-3 pe-3 mt-1 ">
+                <div class="col-md-12 d-flex justify-content-between">
+                    <h2 class="">文章管理</h2>
+                    <a href="/news/create" class="btn btn-success d-flex align-items-center justify-content-center" style="text-decoration: none; width:120px;">新增文章</a>
                 </div>
-
+                <div class="col-md-12 d-flex justify-content-center ps-3 pe-3">
+                    <table class="col-md-12">
+                        <thead style="height:70px ;border-bottom:2px #cccccc solid;">
+                            <tr>
+                                <th class="h5">文章編號</th>
+                                <th class="h5">圖片</th>
+                                <th class="h5">標題</th>
+                                <th class="h5">作者</th>
+                                <th class="h5">功能</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($news as $item)
+                                <tr style="height:60px; border-bottom:1px solid gray;">
+                                    <td class="col-md-2">#{{$item->id}}</td>
+                                    <td class="col-md-2"><img src="{{$item->img}}"></td>
+                                    <td class="col-md-3">{{$item->title}}</td>
+                                    <td class="col-md-3">{{$item->author}}</td>
+                                    <td class="col-md-2">
+                                        <div class="d-flex align-self-center">
+                                            <button class="btn btn-secondary" onclick="location.href='/news/edit/{{$item->id}}'">編輯</button>
+                                            <button class="btn btn-danger ms-3" onclick="document.querySelector('#deleteForm{{$item->id}}').submit();">刪除</button>
+                                            <form action="/news/delete/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
+    @endsection
+    @section('js')
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+
     @endsection

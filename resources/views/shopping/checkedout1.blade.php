@@ -369,7 +369,13 @@
                         </div>
                     </div>
                     <hr style="width: 90%; margin: 0 auto; margin-top: 40px; color: rgb(165, 165, 165);">
-                    <div class="list-detail ms-5 d-flex align-items-center">訂單明細</div>
+                    <div class="list-detail ms-5 d-flex align-items-center">
+                        @if ( count($shopping) >= 1)
+                        訂單明細
+                        @else
+                        尚未加入購物車
+                        @endif
+                    </div>
 
                     <div>
                         {{-- @foreach ($陣列 as $item) --}}
@@ -403,16 +409,20 @@
                     </div>
 
                     <div class="mt-4 mb-4" style="width:250px; margin-left:auto; color:rgb(71, 71, 71);">
-                        <div class="h6">商品數量：{{count($shopping)}}</div>
-                        <div class="h6">小計：NT${{$sub_total}}</div>
-                        <div class="h6">運費：NT$100</div>
-                        <div class="h6">總計：NT${{$sub_total+100}}</div>
+                        @if ( count($shopping) >= 1)
+                            <div class="h6">商品數量：{{count($shopping)}}</div>
+                            <div class="h6">小計：NT${{$sub_total}}</div>
+                            <div class="h6">運費：NT$100</div>
+                            <div class="h6">總計：NT${{$sub_total+100}}</div>
+                        @endif
                     </div>
                     <hr class="mb-4">
                 </div>
                 <div class="col-md-10 d-flex justify-content-between" style="margin: 0 auto;">
                     <a href="/" style="color: black"><div class="h6 mt-3"> ← 返回購物</div></a>
-                    <button class="btn btn-primary" type="submit" style="width: 130px;height: 50px;">下一步</button>
+                    @if (count($shopping) >= 1)
+                        <button class="btn btn-primary" type="submit" style="width: 130px;height: 50px;">下一步</button>
+                    @endif
                 </div>
             </form>
         </section>

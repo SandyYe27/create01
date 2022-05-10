@@ -8,11 +8,12 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Comments;
 use App\Models\Good;
 use App\Models\ShoppingCart;
 use App\Models\order;
-use Illuminate\Support\Facades\Auth;
+use App\Models\News;
 
 
 
@@ -23,7 +24,7 @@ class Controller extends BaseController
 
     public function index(){
         $data1 = DB::table('news')->take(3)->get();   //最舊3筆
-        $data2 = DB::table('news')->orderBy('id' , 'desc')->take(3)->get(); //最新3筆且依原本順序排列 543
+        $data2 = DB::table('news')->orderBy('id' , 'desc')->take(3)->get(); //最新3筆且依倒序排列 543
         $data3 = DB::table('news')->inRandomOrder()->take(3)->get();//隨機3筆
 
         $good1 = Good::inRandomOrder()->take(8)->get();
@@ -172,6 +173,7 @@ class Controller extends BaseController
         return redirect('/comment');//redirect('裡面放網址')
 
     }
+
     public function order_list(){
 
         $orders = Order::where('user_id', Auth::id())->get();
@@ -179,5 +181,18 @@ class Controller extends BaseController
         return view('order_list',compact('orders'));
     }
 
+    public function news_list(){
+
+        $news = News::orderBy('id' , 'desc')->get();
+        return view('news_list',compact('news'));
+
+    }
+
+    public function news_detail($id){
+
+        $news = News::find($id);
+        return view('news_inside',compact('news'));
+
+    }
 
 }
