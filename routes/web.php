@@ -23,7 +23,16 @@ use App\Http\Controllers\OrderController;
 |
 */
 
+//首頁
 Route::get('/', [Controller::class, 'index']);
+
+
+//後台首頁
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth','power'])->name('dashboard');//使用auth和power這兩個middleware
+// 登入相關路由
+require __DIR__.'/auth.php';
 
 
 //商品詳情
@@ -33,24 +42,16 @@ Route::post('/add_to_cart', [Controller::class, 'add_cart']);  //加入購物車
 
 
 
-//後台首頁
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth','power'])->name('dashboard');//使用auth和power這兩個middleware
-
-require __DIR__.'/auth.php';
-
+//檢視訂單列表
+Route::get('/order_list', [Controller::class, 'order_list']);
 
 //訂單相關
 Route::prefix('/order')->middleware(['auth','power'])->group(function(){
-
     Route::get('/', [OrderController::class, 'index']);//訂單列表頁
-
     Route::get('/edit/{id}', [OrderController::class, 'edit']);//編輯頁
     Route::post('/update/{id}', [OrderController::class, 'update']);//更新功能
 
 });
-
 
 
 //留言相關
@@ -68,6 +69,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/shopping2', [ShoppingCarController::class, 'step02']);
     Route::post('/shopping3', [ShoppingCarController::class, 'step03']);
     Route::post('/shopping4', [ShoppingCarController::class, 'step04']);
+    Route::get('/show_order/{id}', [ShoppingCarController::class, 'show_order']);
+
 });
 
 //Banner相關

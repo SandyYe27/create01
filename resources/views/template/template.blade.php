@@ -25,12 +25,13 @@
         <div class="nav-logo-box d-flex justify-content-center">
             <a href="/"><img src="https://lesson-bootstrap.dev-hub.io/img/logo.svg" alt=""></a>
         </div>
-        <div class="navbar-right gap-4 d-md-flex">
+        <div class="navbar-right gap-2 d-md-flex">
             <div class="navbar-right-button gap-4 d-md-flex">
                 {{-- <a href="/good"><button class="btn h6">Product</button></a>
                 <a href="/banner"><button class="btn h6">Banner</button></a> --}}
                 <a href="/comment"><button class="btn h6">Comment</button></a>
                 <a href="/shopping1"><button class="btn h6">Shoppingcar</button></a>
+                <a href="/order_list"><button class="btn h6">Order</button></a>
 
                 @auth
                 {{--如果有登入，看到user您好，和登出鍵--}}
@@ -49,7 +50,6 @@
                         </form>
                     </li>
                 @endauth
-
 
                 {{--如果沒登入，就看到登入鍵，導到登入頁login--}}
                 @guest

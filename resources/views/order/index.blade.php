@@ -273,9 +273,10 @@
                         <thead style="height:70px ;border-bottom:2px #cccccc solid;">
                             <tr>
                                 <th class="h5">訂單編號</th>
-                                <th class="h5">訂購者姓名</th>
+                                <th class="h5">訂購人姓名</th>
                                 <th class="h5">信箱</th>
-                                <th class="h5">備註</th>
+                                <th class="h5">總金額</th>
+                                <th class="h5">訂單狀態</th>
                                 <th class="h5">功能</th>
                             </tr>
                         </thead>
@@ -285,11 +286,23 @@
                                     <td>#{{$item->id}}</td>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->email}}</td>
-                                    <td>{{$item->ps}}</td>
+                                    <td>NT${{$item->total}}</td>
+                                    <td>
+                                        @if ($item->status == 1)
+                                            訂單成立（未付款）
+                                        @elseif($item->status == 2)
+                                            已付款
+                                        @elseif($item->status == 3)
+                                            已出貨
+                                        @elseif($item->status == 4)
+                                            已結單
+                                        @else
+                                            已取消
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="d-flex align-self-center">
-                                            <button class="btn btn-secondary" onclick="location.href='/order/edit/{{$item->id}}'">編輯</button>
-                                            <button class="btn btn-danger ms-3" onclick="document.querySelector('#deleteForm{{$item->id}}').submit();">刪除</button>
+                                            <button class="btn btn-secondary" onclick="location.href='/order/edit/{{$item->id}}'">修改訂單狀態</button>
                                             <form action="/order/delete/{{$item->id}}" method="post" hidden id="deleteForm{{$item->id}}">
                                                 @csrf
                                                 @method('DELETE')

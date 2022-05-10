@@ -376,64 +376,49 @@
                         <p>寄送資料</p>
                         <div class="row g-3">
                             <div class="col-md-12">
-                                <label for="inputName" class="form-label">姓名</label>
-                                <input type="email" class="form-control" id="inputName" placeholder="王小明">
+                                <label for="name" class="form-label">姓名</label>
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
                             <div class="col-md-12">
-                                <label for="inputPhone" class="form-label">電話</label>
-                                <input type="password" class="form-control" id="inputPhone" placeholder="0912345678">
+                                <label for="phone" class="form-label">電話</label>
+                                <input type="text" class="form-control" id="phone" name="phone">
                             </div>
-                            <div class="col-12">
-                                <label for="inputEmail" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="inputEmail" placeholder="abc@gmail.com" >
+                            <div class="col-md-12">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="email" name="email">
                             </div>
+
                             <div class="col-md-6">
-                                <label for="inputCity" class="form-label">城市</label>
-                                <input type="text" class="form-control" id="inputCity" placeholder="城市">
+                                <label for="address" class="form-label">
+                                    @if ($deliver == 1)
+                                        地址
+                                    @else
+                                        超商地址
+                                    @endif
+                                </label>
+                                <input type="text" class="form-control" id="address" name="city">
                             </div>
                             <div class="col-md-6 mt-5">
-                                <input type="text" class="form-control" id="inputCity" placeholder="郵遞區號">
+                                <input type="text" class="form-control" name="code">
                             </div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" id="inputCity" placeholder="地址">
+                                <input type="text" class="form-control" name="address">
                             </div>
                         </div>
                     </div>
                     <hr class="mt-5">
-                    <div class="total-box" style="height: 200px;">
-                        <table>
-                            <tr>
-                                <td>數量：</td>
-                                <td></td>
-                                <td></td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>小計：</td>
-                                <td></td>
-                                <td></td>
-                                <td >$24.90</td>
-                            </tr>
-                            <tr>
-                                <td>運費：</td>
-                                <td></td>
-                                <td></td>
-                                <td>$24.90</td>
-                            </tr>
-                            <tr>
-                                <td>總計：</td>
-                                <td></td>
-                                <td></td>
-                                <td>$24.90</td>
-                            </tr>
-                        </table>
+                    <div class="mt-4 mb-4" style="width:250px; margin-left:auto; color:rgb(71, 71, 71);">
+                        <div class="h6">商品數量：{{count($shopping)}}</div>
+                        <div class="h6">小計：NT${{$sub_total}}</div>
+                        <div class="h6">運費：NT$100</div>
+                        <div class="h6">總計：NT${{$sub_total+100}}</div>
                     </div>
                     <hr>
                     <div class="next-step d-flex justify-content-between mt-5">
                         <a href="/shopping2" style="color:white;">
                             <button class="btn btn-primary" style="width: 130px;height: 50px;">上一步</button>
                         </a>
-                        <button class="btn btn-primary" style="width: 130px;height: 50px;"> 下一步</button>
+                        <button class="btn btn-primary" style="width: 130px;height: 50px;" type="submit">成立訂單</button>
                     </div>
                 </div>
             </form>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class OrderController extends Controller
@@ -22,6 +24,15 @@ class OrderController extends Controller
         $header = '訂單管理-編輯頁';
         $slot = '';
         return view('order.edit', compact('order','header','slot'));
+
+    }
+    public function update(Request $request, $id){
+        $order = Order::find($id);
+        $order->status = $request->status;
+        $order->ps = $request->ps;
+
+        $order->save();
+        return redirect('/order')->with('success','編輯成功');
 
     }
 

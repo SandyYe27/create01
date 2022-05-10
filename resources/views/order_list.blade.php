@@ -1,9 +1,8 @@
 @extends('template.template')
 
     @section('pageTitle')
-        Checkedout2
+        歷史訂單
     @endsection
-
 
     @section('css')
         <style>
@@ -59,33 +58,32 @@
                 }
             }
 
-            nav label{
+            label{
                 width: 40px;
                 height: 40px;
                 display: none;
 
             }
-            nav label > div{
+            label > div{
                 width: 20px;
                 height: 20px;
                 margin-top: 10px;
                 background-image: url('{{asset('img/bootstrap.img/qJeRpp_WmKGWrqc.jpeg')}}');
+
                 background-size: cover;
                 background-color: aquamarine;
             }
-            nav label:hover{
+            label:hover{
                 cursor: pointer;
             }
             @media (max-width:768px) {
-                nav label{
+                label{
                     display: block;
                 }
             }
             nav .ham-div{
-                /* height: 250px; */
                 display: none;
                 background-color: rgb(255, 255, 255);
-                /* position: absolute; */
                 top: 80px;
                 z-index: 1;
                 margin-left: -10px;
@@ -108,22 +106,23 @@
                 /* 背景色 */
                 padding-top: 50px;
                 padding-bottom: 50px;
+
             }
-            #shopping-step02{
+            #shopping-step01{
                 width: 1030px;
-                /* height: 1000px; */
                 margin: 0 auto;
                 background-color: rgb(241, 242, 245);
                 /* 中間主區塊色 */
                 border-radius: 10px;
+                position: relative;
             }
             @media (max-width:1039px) {
-                #shopping-step02{
+                #shopping-step01{
                     width: 100%;
                 }
             }
             @media (max-width:785px) {
-                #shopping-step02{
+                #shopping-step01{
                     width: 460px;
                 }
                 .steps{
@@ -131,14 +130,12 @@
                 }
             }
             @media (max-width:460px) {
-                #shopping-step02{
+                #shopping-step01{
                     width: 100%;
                 }
             }
-            #shopping-step02 .container_xxl{
-                /* background-color: rgb(213, 232, 255); */
+            #shopping-step01 .container_xxl{
                 /* height: 850px; */
-                position: relative;
 
             }
             .buy-progress{
@@ -146,14 +143,14 @@
                 padding-top: 20px;
 
             }
-            #shopping-step02 .steps{
+            #shopping-step01 .steps{
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 height: 70px;
             }
 
-            #shopping-step02 .steps .step{
+            #shopping-step01 .steps .step{
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
@@ -165,7 +162,7 @@
                 position: relative;
             }
 
-            #shopping-step02 .steps .step::before{
+            #shopping-step01 .steps .step::before{
                 /* content: '確認購物車'; */
                 content: attr(data-text);
                 position: absolute;
@@ -176,7 +173,7 @@
 
             }
 
-            #shopping-step02 .steps .buy-progress-bar{
+            #shopping-step01 .steps .buy-progress-bar{
                 /* width: 180px; */
                 width: 17%;
                 height: 8px;
@@ -186,23 +183,15 @@
             }
 
             @media (max-width:785px) {
-                #shopping-step02 .steps .buy-progress-bar{
+                #shopping-step01 .steps .buy-progress-bar{
                     width: 10%;
                 }
             }
-            #shopping-step02 .steps .green{
+            #shopping-step01 .steps .green{
                 background-color: rgb(15, 190, 105);
                 color: white;
             }
-            #shopping-step02 .steps .progress-25::before{
-                content: '';
-                width: 100%;
-                height: 100%;
-                background-color: rgb(54, 224, 153);
-                display: block;
-                border-radius: 5px;
-            }
-            #shopping-step02 .steps .progress-50::before{
+            #shopping-step01 .steps .progress-25::before{
                 content: '';
                 width: 35%;
                 height: 100%;
@@ -210,57 +199,58 @@
                 display: block;
                 border-radius: 5px;
             }
+            #shopping-step01 .buy-list{
+                height: 20px;
+            }
             .list-detail{
                 font-size: 25px;
-                /* background-color: aquamarine; */
                 height: 80px;
             }
-            .pay-list{
-                margin-left: 80px;
-            }
-            .pay-option{
-                font-size: 20px;
-            }
-            .fee-list{
-                margin-left: 80px;
-            }
-            .fee-option{
-                font-size: 20px;
+            .dishes-list-box{
+                width: 90%;
+                height: 120px;
             }
 
+            .dishes-name-num > div{
+                margin-left: 10px;
+
+            }
+            .dishes-name-num > div:first-of-type{
+                font-weight: 600;
+            }
+            .dishes-name-num > div:last-of-type{
+                font-size: small;
+                color: darkgray;
+            }
+
+            .how-many-how-much{
+                height: 60px;
+            }
+            input{
+                width: 40px;
+                border-radius: 5px;
+                border: 1px solid gray;
+            }
+            .how-many-how-much > div:last-child{
+                font-weight: 600;
+                font-size: small;
+            }
             hr{
                 color:rgb(165, 165, 165);
                 width: 90%;
                 margin: 0 auto;
             }
-            table{
-                /* width: 300px; */
-                position: absolute;
-                right: 30px;
-                margin-top: 20px;
-            }
-            td{
-                text-align: end;
-                width: 50px;
-            }
-            tr > td:first-of-type{
-                color: gray;
-                font-size: 13px;
-            }
-            tr > td:last-of-type{
-                font-weight: 600;
-                font-size: 20px;
-            }
+
             .next-step{
                 width: 90%;
                 margin: 0 auto;
                 margin-bottom: 30px;
             }
+
             .footer-top{
                 background-color: rgb(255, 255, 255);
                 padding-top: 50px;
                 padding-bottom: 50px;
-
             }
             .footer-top .container{
                 display: flex;
@@ -271,6 +261,7 @@
                 width: 250px;
                 margin-right :50px;
                 color: rgb(147, 147, 147);
+
             }
             @media (max-width:1024px) {
                 .footer-top .footer-top-left {
@@ -284,12 +275,13 @@
                     align-items: center;
                 }
                 .footer-top .footer-top-left {
-                    padding-top: 0;
-                    padding-bottom: 0;
                     margin:0;
                     text-align:center;
                     margin-bottom: -50px;
+                    padding-top: 0;
+
                 }
+
                 .footer-top-right{
                     margin-top: -50px;
                 }
@@ -354,74 +346,57 @@
                 justify-content: center;
                 }
             }
+
+
         </style>
     @endsection
 
     @section('main')
-        <section id="shopping-step02" class="pt-3 pb-3">
-            <form action="/shopping3" method="POST">
-                @csrf
-                <div class="container_xxl">
-                    <div class="buy-progress">
-                        <h2 class="ms-5">購物車</h2>
-                        <div class="steps">
-                            <div class="step green" data-text="確認購物車">1</div>
-                            <div class="buy-progress-bar progress-25"></div>
-                            <div class="step green" data-text=" 付款與運送方式">2</div>
-                            <div class="buy-progress-bar progress-50"></div>
-                            <div class="step" data-text=" 填寫資料">3</div>
-                            <div class="buy-progress-bar"></div>
-                            <div class="step" data-text=" 完成訂購">4</div>
-                        </div>
-                    </div>
-                    <hr class="mt-5">
-                    <div class="list-detail ms-5 d-flex align-items-center">付款方式</div>
-                    <div class="pay-list">
-                        <div class="pay-option">
-                            <input class="me-2 mb-4" type="radio" name="pay" id="creditcard" value="1">
-                            <label for="creditcard">信用卡付款</label>
-                        </div>
-                        <hr class="mb-3" style="width: 90%;">
-                        <div class="pay-option">
-                            <input class="me-2 mb-4" type="radio" name="pay" id="atm" value="2">
-                            <label for="atm">網路 ATM</label>
-                        </div>
-                        <hr class="mb-3" style="width: 90%;">
-                        <div class="pay-option">
-                            <input class="me-2 mb-4" type="radio" name="pay" id="store" value="3">
-                            <label for="store">超商代碼</label>
-                        </div>
-                    </div>
-                    <hr class="mt-4">
-                    <div class="list-detail ms-5 d-flex align-items-center">運送方式</div>
-                    <div class="fee-list">
-                        <div class="fee-option">
-                            <input class="me-2 mb-4" type="radio" name="deliver" id="yamato" value="1">
-                            <label for="yamato">黑貓宅配</label>
-                        </div>
-                        <hr class="mb-3" style="width: 90%;">
-                        <div class="fee-option">
-                            <input class="me-2 mb-4" type="radio" name="deliver" id="tostore" value="2">
-                            <label for="tostore">超商店到店</label>
-                        </div>
-                    </div>
-                    <hr class="mt-4">
-                    <div class="mt-4 mb-4" style="width:250px; margin-left:auto; color:rgb(71, 71, 71);">
-                        <div class="h6">商品數量：{{count($shopping)}}</div>
-                        <div class="h6">小計：NT${{$sub_total}}</div>
-                        <div class="h6">運費：NT$100</div>
-                        <div class="h6">總計：NT${{$sub_total+100}}</div>
-                    </div>
+
+        <section id="shopping-step01" class="pt-3 pb-5">
+            <div class="container_xxl">
+                <h2 class="mt-5 ms-5">歷史訂單</h2>
+                <div class=" ms-5 me-5 mt-4">
+                    <table id="order_list" class="col-md-12">
+                        <thead>
+                            <tr>
+                                <th>訂單編號</th>
+                                <th>購買人</th>
+                                <th>信箱</th>
+                                <th>總金額</th>
+                                <th>訂單狀態</th>
+                                <th>查看</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($orders as $item)
+                            <tr style="border-top:1px solid gray;">
+                                <td>＃{{$item->id}}</td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>NT${{$item->total}}</td>
+                                <td>
+                                    {{-- 1->訂單成立(未付款), 2->已付款, 3->已出貨, 4->已結單, 5->已取消 --}}
+                                    @if ($item->status == 1)
+                                        訂單成立(未付款)
+                                    @elseif ($item->status == 2)
+                                        已付款
+                                    @elseif ($item->status == 3)
+                                        已出貨
+                                    @elseif ($item->status == 4)
+                                        已結單
+                                    @else
+                                        已取消
+                                    @endif
+                                </td>
+                                <td>
+                                    <button class="btn btn-success mt-3 mb-3" onclick="location.href='/show_order/{{$item->id}}'">查看訂單</button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                <hr class="mt-4 mb-5">
-                <div class="next-step d-flex justify-content-between">
-                    <a href="/shopping1" style="color:white;">
-                        <button class="btn btn-primary" style="width: 130px;height: 50px;">上一步</button>
-                    </a>
-                    <button class="btn btn-primary" type="submit" style="width: 130px;height: 50px;">下一步</button>
-                </div>
-            </form>
+            </div>
         </section>
-
     @endsection
-

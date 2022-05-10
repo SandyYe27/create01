@@ -462,7 +462,6 @@
                 </div>
             </div>
         </section>
-
         <section id="merch" class="mt-5 mb-5">
             <div class="container">
                 @foreach ($good2 as $good2)
@@ -605,4 +604,4 @@
 
             });
         </script>
-   @endsection
+    @endsection

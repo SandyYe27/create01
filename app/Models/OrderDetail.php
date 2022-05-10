@@ -35,7 +35,7 @@ class OrderDetail extends Model
     }
 
     public function product(){            //'對方的','自己的'
-        return $this->hasOne(Good::class,'id','product_id')
+        return $this->hasOne(Good::class,'id','product_id');
     }
 
 

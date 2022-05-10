@@ -376,7 +376,7 @@
                         @foreach ($shopping as $item)
                         <div class="dishes-list-box d-flex align-items-center ms-5 justify-content-between">
                             <div class="d-flex meal-detail mt-3">
-                                <img src="{{ $item->product->img_path }}" alt="" style="width:60px; height: 60px; border-radius: 50%;">
+                                <img src="{{ $item->product->img_path }}" style="width:60px; height: 60px; border-radius: 50%;">
                                 <div class="dishes-name-num">
                                     <div>
                                         <p>{{$item->product->product_name}}</p>
@@ -387,7 +387,7 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex how-many-how-much align-items-center">
+                            <div class="d-flex how-many-how-much align-items-center me-5">
                                 <div class="d-flex" style="font-weight: 600;width: 100px;">
                                     <div>-</div>
                                     &nbsp;

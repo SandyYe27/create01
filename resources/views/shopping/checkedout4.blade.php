@@ -58,13 +58,13 @@
                 }
             }
 
-            label{
+            nav label{
                 width: 40px;
                 height: 40px;
                 display: none;
 
             }
-            label > div{
+            nav label > div{
                 width: 20px;
                 height: 20px;
                 margin-top: 10px;
@@ -73,11 +73,11 @@
                 background-size: cover;
                 background-color: aquamarine;
             }
-            label:hover{
+            nav label:hover{
                 cursor: pointer;
             }
             @media (max-width:768px) {
-                label{
+                nav label{
                     display: block;
                 }
             }
@@ -133,10 +133,7 @@
                     width: 100%;
                 }
             }
-            #shopping-step04 .container_xxl{
-                position: relative;
-                height: 1200px;
-            }
+
             .buy-progress{
                 /* background-color: rgb(120, 189, 249); */
                 padding-top: 20px;
@@ -273,7 +270,7 @@
             }
             table{
                 /* width: 300px; */
-                position: absolute;
+                /* position: absolute; */
                 top: 1000px;
                 right: 30px;
             }
@@ -415,113 +412,78 @@
                 <hr style="width: 90%; margin: 0 auto; margin-top: 40px; color: rgb(165, 165, 165);">
                 <div class="list-done d-flex align-items-center">訂單成立</div>
                 <div class="list-detail ms-5 d-flex align-items-center">訂單明細</div>
-                <div class="buy-list">
-                    <div class="dishes-list-box d-flex align-items-center ms-5 justify-content-between">
+                <div>
+                    @foreach ($order->detail as $item)
+                        <div class="dishes-list-box d-flex align-items-center ms-5 justify-content-between">
+                            <div class="d-flex meal-detail">
+                                <img src="{{$item->product->img_path}}" alt="" style="width:60px; height: 60px; border-radius: 50%;">
+                                <div class="dishes-name-num">
+                                    <div style="padding-top: 9px;">
+                                        <p>{{$item->product->product_name}}</p>
+                                    </div>
+                                    <div>
+                                        <p>#{{$item->product->id}}</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="d-flex meal-detail">
-                            <img src="https://images.immediate.co.uk/production/volatile/sites/30/2013/05/Puttanesca-fd5810c.jpg" alt="" style="width:60px; height: 60px; border-radius: 50%;">
-                            <div class="dishes-name-num">
-                                <div style="padding-top: 9px;">
-                                    <p>Chicken momo</p>
+                            <div class="d-flex how-many-how-much align-items-center">
+                                <div class="d-flex" style="font-weight: 600;width: 100px;">
+                                    <div>x{{$item->qty}}</div>
                                 </div>
-                                <div>
-                                    <p>#41551</p>
-                                </div>
+                                <div style="width:60px;">${{$item->qty * $item->price}}</div>
                             </div>
                         </div>
+                        <hr>
+                    @endforeach
 
-                        <div class="d-flex how-many-how-much align-items-center">
-                            <div class="d-flex" style="font-weight: 600;width: 100px;">
-                                <div>x1</div>
-                            </div>
-                            <div style="width:60px;">$10.50</div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="dishes-list-box d-flex align-items-center ms-5 justify-content-between">
-
-                        <div class="d-flex meal-detail">
-                            <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/tgi-fridays-potato-skins-1576689702.jpg?crop=1xw:1xh;center,top&resize=768:*" alt="" style="width:60px; height: 60px; border-radius: 50%;">
-                            <div class="dishes-name-num">
-                                <div style="padding-top: 9px;">
-                                    <p>Spicy Mexican potatoes</p>
-                                </div>
-                                <div>
-                                    <p>#66999</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex how-many-how-much align-items-center">
-                            <div class="d-flex" style="font-weight: 600;width: 100px;">
-                                <div>x1</div>
-                            </div>
-                            <div style="width:60px;">$10.50</div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="dishes-list-box d-flex align-items-center ms-5 justify-content-between">
-                        <div class="d-flex meal-detail">
-                            <img src="https://images.immediate.co.uk/production/volatile/sites/30/2017/06/healthy-nicoise-09b6cd9.jpg?quality=90&webp=true&resize=600,545" alt="" style="width:60px; height: 60px; border-radius: 50%;">
-                            <div class="dishes-name-num">
-                                <div style="padding-top: 9px;">
-                                    <p>Breakfast</p>
-                                </div>
-                                <div>
-                                    <p>#86577</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex how-many-how-much align-items-center">
-                            <div class="d-flex" style="font-weight: 600;width: 100px;">
-                                <div>x1</div>
-                            </div>
-                            <div style="width:60px;">$10.50</div>
-                        </div>
-                    </div>
-                    <hr class="mb-4">
-                    <div class="ms-5" style="width: 100%; font-size: 22px;">
+                    {{-- <hr class="mb-4"> --}}
+                    <div class="ms-5 mt-5" style="width: 100%; font-size: 18px;">
                         <div class="mb-2">寄送資料</div>
-                        <div class="mb-2">姓名 &nbsp; 王曉明</div>
-                        <div class="mb-2">電話 &nbsp; 0912345678</div>
-                        <div class="mb-2">Email &nbsp; abc123@gmail.com</div>
-                        <div class="mb-2">地址 &nbsp; 409 台中市小鎮村英雄路1號</div>
+                        <div class="mb-2">姓名：&nbsp; {{$order->name}}</div>
+                        <div class="mb-2">電話：&nbsp; {{$order->phone}}</div>
+                        <div class="mb-2">Email：&nbsp; {{$order->email}}</div>
+                        <div class="mb-2">
+                            @if ($order->shipping_way == 1)
+                                地址：&nbsp; {{$order->address}}
+                            @else
+                                超商地址：&nbsp; {{$order->store_address}}
+                            @endif
+                        </div>
                     </div>
                 </div>
-                <hr class="mb-5" style="border: 5px;">
+                {{-- <hr class="mb-5" style="border: 5px;"> --}}
 
-                <div class="total-box">
+                <div class="d-flex justify-content-end me-5" style="font-size: 16px;">
                     <table>
                         <tr>
                             <td>數量：</td>
                             <td></td>
                             <td></td>
-                            <td>3</td>
+                            <td>{{$order->product_qty}}</td>
                         </tr>
                         <tr>
                             <td>小計：</td>
                             <td></td>
                             <td></td>
-                            <td >$24.90</td>
+                            <td>NT${{$order->sub_total}}</td>
                         </tr>
                         <tr>
                             <td>運費：</td>
                             <td></td>
                             <td></td>
-                            <td>$24.90</td>
+                            <td>NT${{$order->shipping_fee}}</td>
                         </tr>
                         <tr>
                             <td>總計：</td>
                             <td></td>
                             <td></td>
-                            <td>$24.90</td>
+                            <td>NT${{$order->total}}</td>
                         </tr>
                     </table>
                 </div>
-                <hr style="width: 90%; margin: 0 auto; margin-top: 600px;">
             </div>
-            <hr style="width: 90%; margin: 0 auto; margin-top: -20px;">
-
+            <hr>
             <div class="next-step d-flex justify-content-end">
                 <a href="/" style="color: white"><button class="btn btn-primary" style="width: 130px;height: 50px; margin-top: 20px;">返回首頁</button></a>
 

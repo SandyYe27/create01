@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\Comments;
 use App\Models\Good;
 use App\Models\ShoppingCart;
+use App\Models\order;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -150,7 +151,7 @@ class Controller extends BaseController
 
 
     }
-    
+
     public function update_comment($id, Request $request){
         //方法一，DB操作
         // DB::table('comments')->where('id',$id)->update([
@@ -171,4 +172,12 @@ class Controller extends BaseController
         return redirect('/comment');//redirect('裡面放網址')
 
     }
+    public function order_list(){
+
+        $orders = Order::where('user_id', Auth::id())->get();
+
+        return view('order_list',compact('orders'));
+    }
+
+
 }
