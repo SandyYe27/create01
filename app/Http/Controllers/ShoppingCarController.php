@@ -58,12 +58,9 @@ class ShoppingCarController extends Controller
             $item->save();
         }
 
-        $sub_total = 0;
-        foreach ($shopping as $value) {
-            $sub_total += $value->qty * $value->product->product_price;
-        }
 
-        return view('.shopping.checkedout2',compact('shopping','sub_total'));
+
+        return view('.shopping.checkedout2');
     }
 
 
@@ -83,13 +80,7 @@ class ShoppingCarController extends Controller
         ]);
         $deliver = $request->deliver;
 
-        $shopping = ShoppingCart::where('user_id',Auth::id())->get();
-        $sub_total = 0;
-        foreach ($shopping as $value) {
-            $sub_total += $value->qty * $value->product->product_price;
-        }
-        
-        return view('.shopping.checkedout3',compact('deliver','shopping','sub_total'));
+        return view('.shopping.checkedout3',compact('deliver'));
     }
 
     public function step04(Request $request){

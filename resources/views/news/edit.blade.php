@@ -384,8 +384,7 @@
 
                             {{-- 內文 --}}
                             <label class="h6 mb-3 " for="content">內文</label>
-                            <textarea name="content" id="" cols="30" rows="10">{{$news->content}}</textarea>
-
+                            <textarea name="content" id="" cols="30" rows="10">{{$news->artical}}</textarea>
 
                             {{-- 按鈕 --}}
                             <div class="col-md-12 d-flex justify-content-between mt-3">

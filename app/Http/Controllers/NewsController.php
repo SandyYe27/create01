@@ -33,7 +33,7 @@ class NewsController extends Controller
         $news = News::create([
             'img'=> $img_path,
             'title'=> $request->title,
-            'content'=> $request->content,
+            'artical'=> $request->content,
             'author'=> $request->author,
 
         ]);
@@ -62,7 +62,7 @@ class NewsController extends Controller
         };
 
         $news->title = $request->title;
-        $news->content = $request->content;
+        $news->artical = $request->content;
         $news->author = $request->author;
         $news->save();
 

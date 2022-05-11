@@ -243,7 +243,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center">{{$item->title}}</h5>
-                                <p class="card-text text-center">{{$item->content}}</p>
+                                <p class="card-text text-center">{{$item->artical}}</p>
                             </div>
                             <a href="/news_detail/{{$item->id}}" class="btn" style="color: rgb(92, 106, 255);">Learn More →</a>
                         </div>

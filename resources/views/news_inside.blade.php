@@ -290,7 +290,7 @@
                             <img src="{{$news->img}}" alt="" style="width: 80%;">
                         </div>
                         <div class="col-md-10 mt-3 mb-3" style="margin: 0 auto;">
-                            {{$news->content}}
+                            {{$news->artical}}
                         </div>
                     </div>
                     <div class="col-md-12 d-flex justify-content-between mt-3">

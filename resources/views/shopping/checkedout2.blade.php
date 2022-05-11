@@ -407,10 +407,10 @@
                     </div>
                     <hr class="mt-4">
                     <div class="mt-4 mb-4" style="width:250px; margin-left:auto; color:rgb(71, 71, 71);">
-                        <div class="h6">商品數量：{{count($shopping)}}</div>
+                        {{-- <div class="h6">商品數量：{{count($shopping)}}</div>
                         <div class="h6">小計：NT${{$sub_total}}</div>
                         <div class="h6">運費：NT$100</div>
-                        <div class="h6">總計：NT${{$sub_total+100}}</div>
+                        <div class="h6">總計：NT${{$sub_total+100}}</div> --}}
                     </div>
                 </div>
                 <hr class="mt-4 mb-5">
