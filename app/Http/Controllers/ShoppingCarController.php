@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\ShoppingCart;
 use App\Models\Order;
@@ -61,9 +62,12 @@ class ShoppingCarController extends Controller
             $item->save();
         }
 
+        $sub_total = 0;
+        foreach ($shopping as $value) {
+            $sub_total += $value->qty * $value->product->product_price;
+        }
 
-
-        return view('.shopping.checkedout2');
+        return view('.shopping.checkedout2', compact('shopping', 'sub_total'));
     }
 
 
@@ -83,8 +87,17 @@ class ShoppingCarController extends Controller
         ]);
         $deliver = $request->deliver;
 
-        return view('.shopping.checkedout3',compact('deliver'));
+
+        $shopping = ShoppingCart::where('user_id',Auth::id())->get();
+        $sub_total = 0;
+        foreach ($shopping as $value) {
+            $sub_total += $value->qty * $value->product->product_price;
+        }
+
+        return view('.shopping.checkedout3',compact('deliver','shopping','sub_total'));
+
     }
+
 
     public function step04(Request $request){
 
@@ -114,7 +127,6 @@ class ShoppingCarController extends Controller
         foreach($merch as $value){
             $sub_total += $value->qty *  $value->product->product_price;
         }
-
 
         // 根據取貨方式決定運費金額, 1 = 黑貓宅急便 所以是150元, 2 = 超商店到店 所以是60元
         if(session()->get('deliver') == '1'){
@@ -175,13 +187,16 @@ class ShoppingCarController extends Controller
             'subject' => '服務訂單完成確認信',
         ];
 
-        Mail::to(Auth::user()->email)->send(new OrderComplete($data));
+        //先註解不然會一直寄信//
+        // Mail::to(Auth::user()->email)->send(new OrderComplete($data));
+
 
         // dd(Auth::user()->email);
 
         return redirect('/show_order/'.$order->id);
 
     }
+
 
     public function show_order($id){
         $order = Order::find($id);

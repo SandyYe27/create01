@@ -105,8 +105,9 @@
                 display: block;
                 width: unset;
             }
-
-
+            .row.row-map{
+                margin:0;
+            }
             .footer-top{
                 background-color: rgb(255, 255, 255);
                 padding-top: 50px;
@@ -156,7 +157,6 @@
                 display: flex;
                 justify-content: space-between;
                 flex-wrap: wrap;
-
             }
 
             .list-unstyled > div{
@@ -207,7 +207,6 @@
         </style>
     @endsection
 
-
     @section('main')
 
         <div class="swiper mySwiper">
@@ -220,7 +219,6 @@
             <div class="swiper-button-prev"><i class="fa-solid fa-angle-left"></i></div>
             <div class="swiper-pagination"></div>
         </div>
-
         <section class="section-2 denim-heirloom">
             <div class="container">
                 <div class="row d-flex flex-column align-items-center justify-content-center">

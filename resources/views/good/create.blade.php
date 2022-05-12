@@ -273,24 +273,28 @@
                         </label>
 
                         {{-- 品名 --}}
-                        <label class="h6 mb-3" for="product_name">產品名稱
+                        <div>
+                            <label class="h6 mb-3" for="product_name">產品名稱</label>
                             <input class="col-md-12" type="text" name="product_name" id="product_name">
-                        </label>
+                        </div>
 
                         {{-- 介紹 --}}
-                        <label class="h6 mb-3 " for="product_description">產品介紹
-                            <input class="col-md-12" type="text" name="product_description" id="product_description">
-                        </label>
+                        <div>
+                            <label class="h6" for="product_description">產品介紹</label>
+                            <textarea  class="col-md-12" name="product_description" id="product_description" cols="30" rows="10"></textarea>
+                        </div>
 
                         {{-- 價格 --}}
-                        <label class="h6 mb-3 " for="product_price">產品價格
-                            <input class="col-md-12" type="number" name="product_price" id="product_price">
-                        </label>
+                        <div>
+                            <label class="h6 mb-3 " for="product_price">產品價格</label>
+                            <input class="col-md-12" min="1" type="number" name="product_price" id="product_price">
+                        </div>
 
                         {{-- 數量 --}}
-                        <label class="h6 mb-3 " for="product_amount">產品數量
-                            <input class="col-md-12" type="number" name="product_amount" id="product_amount">
-                        </label>
+                        <div class="mb-5">
+                            <label class="h6 mb-3 " for="product_amount">產品數量</label>
+                            <input class="col-md-12" min="1" type="number" name="product_amount" id="product_amount">
+                        </div>
 
                         {{-- 送出按鈕 --}}
                         <div class="col-md-12 d-flex justify-content-between mt-3">

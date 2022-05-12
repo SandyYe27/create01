@@ -76,7 +76,6 @@ Route::get('/comment/update/{id}', [Controller::class, 'update_comment']);
 
 //購物車相關
 Route::middleware(['auth'])->group(function(){
-
     Route::get('/shopping1', [ShoppingCarController::class, 'step01']);
     Route::post('/shopping2', [ShoppingCarController::class, 'step02']);
     Route::post('/shopping3', [ShoppingCarController::class, 'step03']);
@@ -135,8 +134,8 @@ Route::get('/news_detail/{id}', [Controller::class, 'news_detail']);//各文章�
 //文章管理相關
 Route::prefix('/news')->middleware(['auth','power'])->group(function(){
 
-    Route::get('/', [NewsController::class, 'index']);//列表頁
-    Route::get('/create', [NewsController::class, 'create']);//新增頁
+    Route::get('/', [NewsController::class, 'index']);
+    Route::get('/create', [NewsController::class, 'create']);
     Route::post('/store', [NewsController::class, 'store']);
     Route::get('/edit/{id}', [NewsController::class, 'edit']);
     Route::post('/update/{id}', [NewsController::class, 'update']);

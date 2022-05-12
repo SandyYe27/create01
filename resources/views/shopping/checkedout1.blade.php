@@ -483,7 +483,8 @@
                     method:'POST',
                     body: form
                 }).then(res => {
-                    location.reload() //稍微浪費資源、但可行
+                    location.reload(); //稍微浪費資源、但可行
+                    alert('刪除成功');
                 })
 
                 //~耐心~//

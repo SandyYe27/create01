@@ -1,7 +1,7 @@
 @extends('template.template')
 
     @section('pageTitle')
-        歷史訂單
+        歷史訂單查詢
     @endsection
 
     @section('css')

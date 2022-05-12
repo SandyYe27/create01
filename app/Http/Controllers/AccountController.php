@@ -39,7 +39,6 @@ class AccountController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-
         // if($validator->fails()){
         //     return redirect('/account/create')->with('problem','輸入資訊錯誤，請重新檢查');
         // };
