@@ -52,6 +52,9 @@ Route::get('/product_detail/{id}', [Controller::class, 'product']); //商品內�
 
 //接受加入購物車的請求
 Route::post('/add_to_cart', [Controller::class, 'add_cart']);  //加入購物車
+//刪除購物車的商品
+Route::post('/delete_from_cart/{id}', [Controller::class, 'delete_cart']);
+
 
 //檢視訂單列表
 Route::middleware(['auth'])->get('/order_list', [Controller::class, 'order_list']);
@@ -132,12 +135,12 @@ Route::get('/news_detail/{id}', [Controller::class, 'news_detail']);//各文章�
 //文章管理相關
 Route::prefix('/news')->middleware(['auth','power'])->group(function(){
 
-    Route::get('/', [NewsController::class, 'index']);//總表、列表頁
+    Route::get('/', [NewsController::class, 'index']);//列表頁
     Route::get('/create', [NewsController::class, 'create']);//新增頁
-    Route::post('/store', [NewsController::class, 'store']);//儲存功能//不能用get
-    Route::get('/edit/{id}', [NewsController::class, 'edit']);//編輯頁
-    Route::post('/update/{id}', [NewsController::class, 'update']);//更新功能
-    Route::delete('/delete/{id}', [NewsController::class, 'destroy']);//刪除
+    Route::post('/store', [NewsController::class, 'store']);
+    Route::get('/edit/{id}', [NewsController::class, 'edit']);
+    Route::post('/update/{id}', [NewsController::class, 'update']);
+    Route::delete('/delete/{id}', [NewsController::class, 'destroy']);
 
 });
 

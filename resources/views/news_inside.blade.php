@@ -290,13 +290,13 @@
                             <img src="{{$news->img}}" alt="" style="width: 80%;">
                         </div>
                         <div class="col-md-10 mt-3 mb-3" style="margin: 0 auto;">
-                            {{$news->artical}}
+                            {{-- {{$news->artical}} --}}
+                            {{substr($news->$news->artical,0,150)}}
                         </div>
                     </div>
                     <div class="col-md-12 d-flex justify-content-between mt-3">
-                        <input type="button" onclick="location.href='/news_list' " value="返回最新消息" style="border:1px solid gray ;width: 130px;height: 50px;">
+                        <input type="button" onclick="location.href='/news_list' " value="看所有最新消息" style="border:1px solid gray ;width: 130px;height: 50px;">
                         <input type="button" onclick="location.href='/' " value="返回首頁" style="border:1px solid gray ;width: 130px;height: 50px;">
-
                     </div>
                 </div>
             </div>

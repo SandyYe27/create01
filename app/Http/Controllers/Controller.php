@@ -35,9 +35,6 @@ class Controller extends BaseController
 
 
     }
-    // public function abcd(){
-    //     return view('切微軟');
-    // }
 
 
     public function product($id){
@@ -88,6 +85,13 @@ class Controller extends BaseController
         return $result;
     }
 
+
+    public function delete_cart($id){
+
+        ShoppingCart::find($id)->delete();
+
+        return redirect('/shopping1');//redirect 加網址
+    }
 
     public function login(){
         return view('shopping.login');

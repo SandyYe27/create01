@@ -387,21 +387,25 @@
                                     <div>
                                         <p>{{$item->product->product_name}}</p>
                                     </div>
-                                    <div>
-                                        <p>#{{$item->product->id}}</p>
+                                    <div class="number"
+                                        data-product_qty="{{$item->product->product_amount}}"
+                                        data-product_price="{{$item->product->product_price}}">
+                                        #{{$item->product->id}}
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="d-flex how-many-how-much align-items-center me-5">
+                            <div class="d-flex how-many-how-much align-items-center me-3">
                                 <div class="d-flex" style="font-weight: 600;width: 100px;">
-                                    <div>-</div>
+                                    <i class="mt-1 fa-solid fa-minus"></i>
                                     &nbsp;
-                                    <div><input type="number" name="qty[]" value="{{$item->qty}}"></div>
+                                    <div><input type="number" name="qty[]" class="qty" value="{{$item->qty}}" readonly></div>
                                     &nbsp;
-                                    <div>+</div>
+                                    <i class="mt-1 fa-solid fa-plus"></i>
                                 </div>
-                                <div style="width:60px;">NT${{$item->qty * $item->product->product_price}}</div>
+                                <div  class="sum-price">NT${{$item->qty * $item->product->product_price}}</div>
+                                <div class="btn btn-danger ms-3" onclick="delete_cart('{{$item->id}}')">刪除</div>
+
                             </div>
                         </div>
                         <hr>
@@ -410,10 +414,10 @@
 
                     <div class="mt-4 mb-4" style="width:250px; margin-left:auto; color:rgb(71, 71, 71);">
                         @if ( count($shopping) >= 1)
-                            <div class="h6">商品數量：{{count($shopping)}}</div>
-                            <div class="h6">小計：NT${{$sub_total}}</div>
+                            <div class="h6">數量：{{count($shopping)}}</div>
+                            <div class="h6 sub_total">小計：NT${{$sub_total}}</div>
                             <div class="h6">運費：NT$100</div>
-                            <div class="h6">總計：NT${{$sub_total+100}}</div>
+                            <div class="h6 total">總計：NT${{$sub_total+100}}</div>
                         @endif
                     </div>
                     <hr class="mb-4">
@@ -426,5 +430,64 @@
                 </div>
             </form>
         </section>
+    @endsection
+
+    @section('js')
+        <script>
+            const minus = document.querySelectorAll('.fa-minus')
+            const plus = document.querySelectorAll('.fa-plus')
+            const qty = document.querySelectorAll('.qty')
+            const sum_price = document.querySelectorAll('.sum-price')
+            const number = document.querySelectorAll('.number')
+
+            //小計與總計的元素
+            const sub_total = document.querySelector('.sub_total')
+            const total = document.querySelector('.total')
+
+
+            for (let i = 0; i < minus.length; i++) { //用for迴圈做每一個plus和minus的功能
+                minus[i].onclick = function(){
+                    if(parseInt(qty[i].value)> 1){
+                        qty[i].value = parseInt(qty[i].value) - 1
+                        //重新計算價格（商品單價 * 數量）
+                        sum_price[i].innerHTML = 'NT$' + (parseInt(number[i].dataset.product_price) * parseInt(qty[i].value))
+                    }
+                    get_total()
+                }
+
+                plus[i].onclick = function(){
+                    if(parseInt(qty[i].value) < parseInt(number[i].dataset.product_qty) ){
+                        qty[i].value = parseInt(qty[i].value) + 1
+                        sum_price[i].innerHTML = 'NT$' + (parseInt(number[i].dataset.product_price) * parseInt(qty[i].value))
+                    }
+                    get_total()
+                }
+
+            }
+
+            function get_total(){ //計算所有品項的金額，並加總
+                var sum = 0
+                    for (let j = 0; j < minus.length; j++) {
+                        sum += parseInt(number[j].dataset.product_price) * parseInt(qty[j].value)
+                    }
+                    sub_total.innerHTML = '小計：NT$' + sum
+                    total.innerHTML = '總計：NT$' + (sum + 150)
+            }
+
+            function delete_cart(id) {
+
+                var form = new FormData();
+                form.append('_token',  '{!! csrf_token() !!}' );
+
+                fetch('/delete_from_cart/'+ id,{
+                    method:'POST',
+                    body: form
+                }).then(res => {
+                    location.reload() //稍微浪費資源、但可行
+                })
+
+                //~耐心~//
+            }
+        </script>
     @endsection
 

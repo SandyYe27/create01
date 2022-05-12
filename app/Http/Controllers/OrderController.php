@@ -12,7 +12,7 @@ class OrderController extends Controller
 {
     public function index(){
 
-        $order = Order::get();
+        $order = Order::orderBy('id' , 'desc')->get();
         $header = '訂單管理-列表頁';
         $slot = '';
         return view('order.index', compact('order','header','slot'));
