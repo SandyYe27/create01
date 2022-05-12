@@ -93,6 +93,7 @@ class Controller extends BaseController
         return redirect('/shopping1');//redirect 加網址
     }
 
+
     public function login(){
         return view('shopping.login');
     }
