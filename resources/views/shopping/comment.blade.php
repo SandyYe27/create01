@@ -396,7 +396,7 @@
 
                         <div class="col-md-12">
                             <label for="inputex3" class="form-label">留言</label>
-                            <input type="text" class="form-control" id="inputex3" name="content" placeholder="留言區" style="height: 200px" >
+                            <textarea class="form-control col-md-12 mb-3" name="content" id="inputex3" cols="30" rows="10" style="height: 200px" placeholder="留言"></textarea>
                         </div>
                         <div class="col-md-12 d-flex justify-content-between mb-3">
                             <input type="reset"style="width: 130px;height: 50px;">
