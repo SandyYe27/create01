@@ -91,7 +91,7 @@ class Controller extends BaseController
         ShoppingCart::find($id)->delete();
 
         return redirect('/shopping1');//redirect 加網址
-    }
+    }1
 
 
     public function login(){
